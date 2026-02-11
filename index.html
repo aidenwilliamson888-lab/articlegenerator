@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyword to HTML Pro - Money Site Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            padding: 30px 20px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .keyword-list {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin: 0 5px 8px 0;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59,130,246,0.3);
+        }
+
+        .btn-secondary {
+            background: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .ads-section {
+            background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
+            border: 2px dashed #eab308;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .ads-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #854d0e;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .preview {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: #1e293b;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-content {
+            padding: 30px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .html-output {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .copy-btn {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .copy-btn:hover {
+            background: #475569;
+        }
+
+        .faq-section {
+            margin-top: 40px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .badge {
+            background: #22c55e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .seo-score {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <span>📝</span>
+                Keyword to HTML Pro
+            </h1>
+            <p>Generator artikel SEO-optimized untuk money site • Siap pasang iklan Adsterra & affiliate</p>
+            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                <span class="badge">✅ 100% Original Content</span>
+                <span class="seo-score">📈 SEO Optimized</span>
+                <span class="badge">💰 Adsterra Ready</span>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <!-- LEFT PANEL - INPUT -->
+            <div class="card">
+                <h2>
+                    <span>🔑</span>
+                    1. Input Keywords & Konten
+                </h2>
+                
+                <div class="form-group">
+                    <label>📌 Keyword Utama (Focus Keyword)</label>
+                    <input type="text" id="focusKeyword" placeholder="Contoh: cara membuat kue brownies" value="review laptop gaming terbaik">
+                </div>
+
+                <div class="form-group">
+                    <label>🎯 Keyword Sekunder (pisahkan dengan koma)</label>
+                    <input type="text" id="secondaryKeywords" placeholder="laptop gaming murah, rekomendasi laptop 2025, laptop untuk editor" value="laptop gaming murah, rekomendasi laptop 2026, laptop untuk mahasiswa">
+                </div>
+
+                <div class="form-group">
+                    <label>📄 Judul Artikel (Title Tag)</label>
+                    <input type="text" id="articleTitle" placeholder="Judul artikel Anda" value="10 Rekomendasi Laptop Gaming Terbaik 2026 - Harga Mulai 5 Jutaan">
+                </div>
+
+                <div class="form-group">
+                    <label>✍️ Meta Description (SEO)</label>
+                    <textarea id="metaDescription" placeholder="Deskripsi singkat untuk Google">Cari laptop gaming terbaik 2026? Simak rekomendasi 10 laptop gaming murah dengan spesifikasi tinggi, cocok untuk gaming dan kerja.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>📝 Konten Artikel (tulis dalam format list per poin)</label>
+                    <textarea id="articleContent" placeholder="Masukkan 1 item per baris&#10;Contoh:&#10;1. ASUS ROG Zephyrus - Spesifikasi lengkap dan harga&#10;2. Lenovo Legion 5 - Kelebihan dan kekurangan&#10;3. Acer Nitro 5 - Review lengkap" rows="8">1. ASUS ROG Zephyrus G14 - Ryzen 9, RTX 4060, Rp 25.000.000
+2. Lenovo Legion 5 Pro - Intel i7, RTX 4070, Rp 28.500.000
+3. Acer Nitro 5 - Ryzen 5, GTX 1650, Rp 12.000.000
+4. MSI Katana GF66 - Intel i5, RTX 3050, Rp 15.500.000
+5. HP Victus 16 - AMD Ryzen 7, RX 5500M, Rp 16.000.000
+6. Dell G15 - Intel i7, RTX 3060, Rp 18.500.000
+7. Apple MacBook Pro M3 - Chip M3, 16GB RAM, Rp 30.000.000
+8. Samsung Galaxy Book Odyssey - Intel i7, RTX 3050, Rp 19.000.000</textarea>
+                </div>
+
+                <div style="background: #f1f5f9; border-radius: 12px; padding: 20px; margin-top: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <span style="font-size: 1.2rem;">💰</span>
+                        <span style="font-weight: 700;">Monetisasi - Affiliate Link</span>
+                    </div>
+                    <div class="form-group">
+                        <label>🔗 Link Afiliasi Amazon/Tokopedia/Shopee</label>
+                        <input type="text" id="affiliateLink" placeholder="https://tokopedia.com/affiliate/..." value="https://www.tokopedia.com/affiliate/laptop-gaming">
+                    </div>
+                    <div class="form-group">
+                        <label>🏷️ Teks Tombol CTA</label>
+                        <input type="text" id="ctaText" placeholder="Cek Harga Terbaru" value="Lihat Harga & Spesifikasi">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL - ADS SETTINGS & PREVIEW -->
+            <div class="card">
+                <h2>
+                    <span>📢</span>
+                    2. Konfigurasi Iklan Adsterra
+                </h2>
+
+                <div class="ads-section">
+                    <div class="ads-label">
+                        <span style="font-size: 1.3rem;">🟡</span>
+                        <span>KOLOM BANNER ADSTERRA</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📎 Script Banner Header (728x90 / 468x60)</label>
+                        <textarea id="headerAdScript" placeholder="Tempel kode script Adsterra untuk banner header di sini..." rows="4">&lt;script type="text/javascript"&gt;
+    atOptions = {
+        'key' : 'CONTOH_KEY_ANDRA_12345',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+    };
+&lt;/script&gt;
+&lt;script type="text/javascript" src="//www.highperformancedformats.com/CONTOH_KEY/invoke.js"&gt;&lt;/script&gt;</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📎 Script Native Ads (In-Content)</label>
+                        <textarea id="nativeAdScript" placeholder="Tempel kode script Adsterra native ads di sini..." rows="4">&lt;script type="text/javascript"&gt;
+    atOptions = {
+        'key' : 'CONTOH_KEY_NATIVE_67890',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+    };
+&lt;/script&gt;
+&lt;script type="text/javascript" src="//www.highperformancedformats.com/CONTOH_KEY/invoke.js"&gt;&lt;/script&gt;</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📎 Script Popunder/Popup</label>
+                        <textarea id="popunderScript" placeholder="Tempel kode script popunder Adsterra (opsional)" rows="3">&lt;script type="text/javascript"&gt;
+    var popunder = "CONTOH_POPUNDER_KEY";
+&lt;/script&gt;
+&lt;script type="text/javascript" src="//www.highperformancedformats.com/pop.js"&gt;&lt;/script&gt;</textarea>
+                    </div>
+
+                    <p style="color: #666; font-size: 0.85rem; margin-top: 10px;">
+                        ⚠️ Ganti kode script di atas dengan kode asli dari dashboard Adsterra Anda.
+                    </p>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <button class="btn" onclick="generateHTML()">
+                        <span>⚡</span>
+                        Generate HTML Artikel
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetForm()">
+                        <span>🔄</span>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- OUTPUT SECTION -->
+        <div style="margin-top: 40px;" id="outputSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <span>📋</span>
+                    Hasil HTML - Siap Copy ke WordPress
+                </h2>
+                <div style="display: flex; gap: 10px;">
+                    <button class="copy-btn" onclick="copyHTML()">
+                        📋 Copy HTML
+                    </button>
+                    <button class="copy-btn" onclick="downloadHTML()">
+                        ⬇️ Download .html
+                    </button>
+                </div>
+            </div>
+
+            <div class="preview">
+                <div class="preview-header">
+                    <span>🖥️ Live Preview</span>
+                    <span style="font-size: 0.85rem; color: #94a3b8;">Mobile & Desktop Friendly</span>
+                </div>
+                <div class="preview-content" id="livePreview">
+                    <!-- Live preview akan muncul di sini -->
+                    <p style="color: #64748b; text-align: center;">Generate artikel untuk melihat preview</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="display: flex; align-items: center; gap: 8px;">
+                        <span>📎</span>
+                        HTML Source Code
+                    </h3>
+                </div>
+                <div class="html-output" id="htmlOutput">
+                    // Hasil HTML akan muncul di sini
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ & TIPS -->
+        <div class="faq-section">
+            <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 25px;">
+                <span>🎯</span>
+                Tips Monetisasi Money Site dengan Adsterra
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                <div>
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">📌</div>
+                    <h4 style="margin-bottom: 8px;">1. Posisi Iklan Strategis</h4>
+                    <p style="color: #475569; font-size: 0.95rem;">Letakkan banner header di atas konten, native ads di tengah artikel, popunder saat user klik CTA.</p>
+                </div>
+                <div>
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">🎨</div>
+                    <h4 style="margin-bottom: 8px;">2. Konten Original Penting</h4>
+                    <p style="color: #475569; font-size: 0.95rem;">Google akan mengindex artikel Anda dengan baik jika konten unik. Jangan copy-paste!</p>
+                </div>
+                <div>
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">💰</div>
+                    <h4 style="margin-bottom: 8px;">3. Kombinasi Affiliate + Ads</h4>
+                    <p style="color: #475569; font-size: 0.95rem;">Gunakan link afiliasi di tombol CTA + iklan display Adsterra untuk maksimalkan revenue.</p>
+                </div>
+                <div>
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">⚡</div>
+                    <h4 style="margin-bottom: 8px;">4. Kecepatan Loading</h4>
+                    <p style="color: #475569; font-size: 0.95rem;">Script Adsterra di-load async agar tidak memperlambat website.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateHTML() {
+            // Ambil semua nilai dari form
+            const focusKeyword = document.getElementById('focusKeyword').value;
+            const secondaryKeywords = document.getElementById('secondaryKeywords').value;
+            const articleTitle = document.getElementById('articleTitle').value;
+            const metaDescription = document.getElementById('metaDescription').value;
+            const articleContent = document.getElementById('articleContent').value;
+            const affiliateLink = document.getElementById('affiliateLink').value;
+            const ctaText = document.getElementById('ctaText').value;
+            
+            // Ambil script iklan
+            const headerAdScript = document.getElementById('headerAdScript').value;
+            const nativeAdScript = document.getElementById('nativeAdScript').value;
+            const popunderScript = document.getElementById('popunderScript').value;
+
+            // Split konten menjadi array
+            const contentItems = articleContent.split('\n').filter(item => item.trim() !== '');
+            
+            // Split keywords sekunder
+            const secondaryKeys = secondaryKeywords.split(',').map(k => k.trim()).filter(k => k !== '');
+
+            // Generate tanggal hari ini
+            const today = new Date();
+            const dateString = today.toLocaleDateString('id-ID', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+
+            // Generate HTML
+            let html = `<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>${articleTitle}</title>
+    <meta name="description" content="${metaDescription}">
+    <meta name="keywords" content="${focusKeyword}, ${secondaryKeywords}">
+    <meta name="author" content="MoneySite Pro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://contoh.com/artikel">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="${articleTitle}">
+    <meta property="og:description" content="${metaDescription}">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${articleTitle}">
+    <meta name="twitter:description" content="${metaDescription}">
+    
+    <!-- Schema Markup untuk Artikel -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "${articleTitle}",
+        "description": "${metaDescription}",
+        "keywords": "${focusKeyword}, ${secondaryKeywords}",
+        "datePublished": "${today.toISOString().split('T')[0]}",
+        "dateModified": "${today.toISOString().split('T')[0]}",
+        "author": {
+            "@type": "Person",
+            "name": "Editor MoneySite"
+        }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .article-wrapper {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .header-ad {
+            margin-bottom: 30px;
+            text-align: center;
+            min-height: 90px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: #0f172a;
+        }
+        .meta-info {
+            color: #64748b;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .featured-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+        .content {
+            font-size: 1.05rem;
+            color: #334155;
+        }
+        .content h2 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #0f172a;
+        }
+        .content h3 {
+            font-size: 1.25rem;
+            margin: 25px 0 10px;
+            color: #1e293b;
+        }
+        .content p {
+            margin-bottom: 20px;
+        }
+        .content ul, .content ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        .content li {
+            margin-bottom: 12px;
+        }
+        .native-ad {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #eab308;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59,130,246,0.3);
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.6rem;
+            }
+            .container {
+                padding: 15px;
+            }
+            .article-wrapper {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="article-wrapper">
+            <!-- HEADER ADS - BANNER ADSTERRA -->
+            <div class="header-ad">
+                ${headerAdScript || '<!-- Banner iklan akan muncul di sini -->'}
+            </div>
+            
+            <!-- JUDUL ARTIKEL -->
+            <h1 class="article-title">${articleTitle}</h1>
+            
+            <div class="meta-info">
+                <span>📅 ${dateString}</span> • 
+                <span>👤 Redaksi</span> • 
+                <span>📁 Kategori: ${focusKeyword.split(' ').slice(0,3).join(' ')}</span> • 
+                <span>⏱️ 5 menit membaca</span>
+            </div>
+            
+            <!-- IMAGE PLACEHOLDER -->
+            <img class="featured-image" src="https://via.placeholder.com/1200x600/0f172a/ffffff?text=${encodeURIComponent(focusKeyword)}" alt="${focusKeyword}">
+            
+            <!-- KONTEN ARTIKEL -->
+            <div class="content">
+                <p style="font-size: 1.1rem; font-weight: 500; color: #0f172a;">
+                    ${metaDescription}
+                </p>
+                
+                <h2>Daftar ${focusKeyword} Pilihan</h2>
+                
+                <!-- NATIVE ADS DI TENGAH KONTEN -->
+                <div class="native-ad">
+                    <p style="margin-bottom: 15px; font-weight: 600;">📢 Sponsored Content</p>
+                    ${nativeAdScript || '<!-- Native ads Adsterra akan muncul di sini -->'}
+                </div>
+                
+                <ul>
+`;
+
+            // Loop untuk konten list
+            contentItems.forEach((item, index) => {
+                // Bersihkan item dari nomor urut jika ada
+                let cleanItem = item.replace(/^\d+\.\s*/, '').trim();
+                html += `                    <li><strong>${cleanItem.split('-')[0] || cleanItem}</strong> - ${cleanItem.split('-')[1] || 'Review lengkap dan harga terbaru'}</li>\n`;
+            });
+
+            html += `                </ul>
+                
+                <h2>Tips Memilih ${focusKeyword.split(' ').slice(0,2).join(' ')}</h2>
+                <p>Sebelum membeli ${focusKeyword}, pastikan Anda mempertimbangkan beberapa faktor penting seperti budget, kebutuhan spesifikasi, dan brand favorit Anda. Berikut adalah panduan lengkapnya:</p>
+                
+                <ul>
+                    <li><strong>Sesuaikan dengan Budget:</strong> Tentukan anggaran Anda terlebih dahulu</li>
+                    <li><strong>Cek Spesifikasi:</strong> Prosesor, RAM, VGA, dan penyimpanan</li>
+                    <li><strong>Baca Review:</strong> Lihat pengalaman pengguna lain</li>
+                    <li><strong>Garansi:</strong> Pastikan produk memiliki garansi resmi</li>
+                </ul>
+                
+                <!-- CALL TO ACTION BOX -->
+                <div class="cta-box">
+                    <h3 style="margin-bottom: 10px;">🔥 Dapatkan Harga Spesial!</h3>
+                    <p style="margin-bottom: 15px;">Klik tombol di bawah untuk cek promo dan diskon terbaru.</p>
+                    <a href="${affiliateLink}" class="cta-button" target="_blank" rel="nofollow sponsored">
+                        ${ctaText} →
+                    </a>
+                    <p style="margin-top: 15px; font-size: 0.85rem; color: #666;">*Harga dapat berubah sewaktu-waktu</p>
+                </div>
+                
+                <h2>FAQ Seputar ${focusKeyword}</h2>
+                
+                <h3>Apa itu ${focusKeyword.split(' ').slice(0,2).join(' ')}?</h3>
+                <p>${focusKeyword.split(' ').slice(0,2).join(' ')} adalah perangkat elektronik yang dirancang khusus untuk kebutuhan gaming dan produktivitas tinggi dengan spesifikasi mumpuni.</p>
+                
+                <h3>Berapa harga ${focusKeyword} termurah?</h3>
+                <p>Harga ${focusKeyword} bervariasi mulai dari Rp 5 jutaan hingga Rp 30 jutaan tergantung spesifikasi dan merek.</p>
+                
+                <h3>Merek apa yang paling direkomendasikan?</h3>
+                <p>Beberapa merek terbaik untuk ${focusKeyword} antara lain ASUS, Lenovo, Acer, MSI, HP, dan Dell.</p>
+            </div>
+            
+            <!-- POPUNDER SCRIPT (LOAD DI FOOTER) -->
+            ${popunderScript ? `<div style="display: none;">${popunderScript}</div>` : ''}
+            
+            <!-- FOOTER -->
+            <div class="footer">
+                <p>© ${today.getFullYear()} MoneySite Pro. Artikel ini mengandung link afiliasi.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>`;
+
+            // Tampilkan HTML di output
+            document.getElementById('htmlOutput').innerHTML = escapeHtml(html);
+            
+            // Tampilkan live preview
+            document.getElementById('livePreview').innerHTML = html;
+            
+            // Simpan HTML ke global variable untuk copy/download
+            window.generatedHTML = html;
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function copyHTML() {
+            if (!window.generatedHTML) {
+                alert('Generate HTML terlebih dahulu!');
+                return;
+            }
+            
+            navigator.clipboard.writeText(window.generatedHTML).then(() => {
+                alert('✅ HTML berhasil dicopy ke clipboard!');
+            }).catch(() => {
+                alert('❌ Gagal copy, silakan select manual');
+            });
+        }
+
+        function downloadHTML() {
+            if (!window.generatedHTML) {
+                alert('Generate HTML terlebih dahulu!');
+                return;
+            }
+            
+            const blob = new Blob([window.generatedHTML], { type: 'text/html' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `artikel-${Date.now()}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function resetForm() {
+            if (confirm('Reset semua form?')) {
+                document.getElementById('focusKeyword').value = 'review laptop gaming terbaik';
+                document.getElementById('secondaryKeywords').value = 'laptop gaming murah, rekomendasi laptop 2026, laptop untuk mahasiswa';
+                document.getElementById('articleTitle').value = '10 Rekomendasi Laptop Gaming Terbaik 2026 - Harga Mulai 5 Jutaan';
+                document.getElementById('metaDescription').value = 'Cari laptop gaming terbaik 2026? Simak rekomendasi 10 laptop gaming murah dengan spesifikasi tinggi, cocok untuk gaming dan kerja.';
+                document.getElementById('articleContent').value = `1. ASUS ROG Zephyrus G14 - Ryzen 9, RTX 4060, Rp 25.000.000
+2. Lenovo Legion 5 Pro - Intel i7, RTX 4070, Rp 28.500.000
+3. Acer Nitro 5 - Ryzen 5, GTX 1650, Rp 12.000.000
+4. MSI Katana GF66 - Intel i5, RTX 3050, Rp 15.500.000
+5. HP Victus 16 - AMD Ryzen 7, RX 5500M, Rp 16.000.000
+6. Dell G15 - Intel i7, RTX 3060, Rp 18.500.000
+7. Apple MacBook Pro M3 - Chip M3, 16GB RAM, Rp 30.000.000
+8. Samsung Galaxy Book Odyssey - Intel i7, RTX 3050, Rp 19.000.000`;
+                document.getElementById('affiliateLink').value = 'https://www.tokopedia.com/affiliate/laptop-gaming';
+                document.getElementById('ctaText').value = 'Lihat Harga & Spesifikasi';
+                
+                // Reset preview
+                document.getElementById('htmlOutput').innerHTML = '// Hasil HTML akan muncul di sini';
+                document.getElementById('livePreview').innerHTML = '<p style="color: #64748b; text-align: center;">Generate artikel untuk melihat preview</p>';
+                window.generatedHTML = null;
+            }
+        }
+
+        // Auto generate on load dengan data contoh
+        window.onload = function() {
+            setTimeout(() => {
+                generateHTML();
+            }, 300);
+        };
+    </script>
+</body>
+</html>
