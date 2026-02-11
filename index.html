@@ -3,941 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ MASS STATIC SITE GENERATOR PRO - 1000+ Artikel Instan + Histats + Sitemap</title>
+    <title>📰 Auto Content Generator - Google News</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0b1120;
-            color: #e2e8f0;
-            padding: 30px 20px;
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .header {
-            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid #334155;
-            border-radius: 28px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.6);
-        }
-
-        .header h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, #94a3b8, #f1f5f9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stats-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 20px;
-            padding: 25px;
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-4px);
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #3b82f6;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 1100px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            color: #f1f5f9;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 14px 18px;
-            background: #0f172a;
-            border: 1.5px solid #334155;
-            border-radius: 14px;
-            font-size: 0.95rem;
-            color: white;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
-            background: #1a2635;
-        }
-
-        textarea {
-            min-height: 140px;
-            resize: vertical;
-        }
-
-        .keyword-batch {
-            background: #0f172a;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 10px;
-        }
-
-        .keyword-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            background: #1e293b;
-            padding: 10px 16px;
-            border-radius: 40px;
-        }
-
-        .btn {
-            background: linear-gradient(145deg, #2563eb, #1d4ed8);
-            color: white;
-            border: none;
-            padding: 16px 28px;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            border: 1px solid #60a5fa;
-            letter-spacing: 0.5px;
-        }
-
-        .btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px -5px #1e3a8a;
-            border-color: #93c5fd;
-        }
-
-        .btn-warning {
-            background: linear-gradient(145deg, #b45309, #92400e);
-            border-color: #f59e0b;
-        }
-
-        .histats-section {
-            background: #0f172a;
-            border: 1px solid #3b82f6;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 25px 0;
-            border-left: 6px solid #3b82f6;
-        }
-
-        .progress-area {
-            margin-top: 30px;
-            background: #0f172a;
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid #334155;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 16px;
-            background: #1e293b;
-            border-radius: 30px;
-            overflow: hidden;
-            margin: 15px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            width: 0%;
-            transition: width 0.3s;
-            border-radius: 30px;
-        }
-
-        .file-list {
-            max-height: 400px;
-            overflow-y: auto;
-            background: #0f172a;
-            border-radius: 16px;
-            padding: 15px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-        }
-
-        .file-item {
-            padding: 8px 12px;
-            border-bottom: 1px solid #1e293b;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .badge {
-            background: #3b82f6;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        .badge-success {
-            background: #10b981;
-        }
-
-        .sitemap-preview {
-            background: #0f172a;
-            border-radius: 14px;
-            padding: 20px;
-            border: 1px solid #10b981;
-            margin-top: 20px;
-        }
-
-        .footer-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .glow {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(59,130,246,0); }
-            100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f1f5f9; padding: 30px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 25px; }
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+        .sub { color: #475569; margin-bottom: 25px; }
+        .input-group { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        input { flex: 1; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 50px; font-size: 1rem; min-width: 250px; }
+        button { background: #0f172a; color: white; border: none; padding: 15px 35px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #1e293b; transform: translateY(-2px); }
+        .result-area { background: #f8fafc; border-radius: 16px; padding: 25px; margin-top: 20px; border: 1px solid #e2e8f0; }
+        .news-item { background: white; border-radius: 14px; padding: 20px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .news-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+        .news-title a { color: #0f172a; text-decoration: none; }
+        .news-title a:hover { color: #2563eb; text-decoration: underline; }
+        .news-meta { color: #64748b; font-size: 0.9rem; margin-bottom: 10px; display: flex; gap: 20px; }
+        .news-snippet { color: #334155; }
+        .ads-banner { background: linear-gradient(145deg, #fef9c3, #fef08a); border-radius: 12px; padding: 20px; text-align: center; margin: 30px 0; border: 1px dashed #eab308; }
+        .badge { background: #3b82f6; color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
+        .footer { text-align: center; color: #64748b; margin-top: 40px; }
+        pre { background: #0f172a; color: #e2e8f0; padding: 20px; border-radius: 12px; overflow-x: auto; font-size: 0.85rem; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-            <h1>
-                ⚡ MASS STATIC SITE GENERATOR
-                <span style="font-size: 1.2rem; background: #2563eb20; padding: 8px 20px; border-radius: 40px; border: 1px solid #3b82f6; -webkit-text-fill-color: white;">PRO EDITION</span>
-            </h1>
-            <p style="color: #94a3b8; font-size: 1.2rem; max-width: 800px;">
-                1 keyword = 100 artikel HTML instan • Auto sitemap.xml • Auto Histats • Siap deploy static hosting
-            </p>
-        </div>
-
-        <!-- STATS REAL-TIME -->
-        <div class="stats-panel" id="statsPanel">
-            <div class="stat-card">
-                <div class="stat-value" id="totalKeywordsCount">0</div>
-                <div class="stat-label">KEYWORD</div>
+        <div class="card">
+            <h1>📰 Google News Auto Content Generator</h1>
+            <p class="sub">Masukkan keyword → Ambil berita → Generate HTML siap pakai</p>
+            
+            <!-- INPUT SEDERHANA -->
+            <div class="input-group">
+                <input type="text" id="keywordInput" placeholder="Contoh: cryptocurrency, AI, climate change" value="artificial intelligence">
+                <input type="number" id="limitInput" placeholder="Jumlah artikel" value="10" min="1" max="50" style="flex: 0.2;">
+                <button onclick="fetchGoogleNews()">🔍 GENERATE</button>
             </div>
-            <div class="stat-card">
-                <div class="stat-value" id="totalArticlesCount">0</div>
-                <div class="stat-label">ARTIKEL HTML</div>
+            
+            <!-- BANNER ADS - ISI SCRIPT ANDA -->
+            <div class="ads-banner">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                    <span style="background: #eab308; color: black; padding: 4px 16px; border-radius: 30px; font-weight: 700;">📢 BANNER ADS</span>
+                </div>
+                <textarea id="adsScript" placeholder="TEMPEL SCRIPT ADS ANDA DI SINI (Adsterra, Adsense, dll)" rows="3" style="width: 100%; padding: 15px; border: 2px dashed #eab308; border-radius: 12px; font-family: monospace;">&lt;!-- Contoh: Ganti dengan script ads Anda --&gt;
+&lt;ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxx" data-ad-slot="yyyyyyyy"&gt;&lt;/ins&gt;</textarea>
             </div>
-            <div class="stat-card">
-                <div class="stat-value" id="totalSitemapCount">0</div>
-                <div class="stat-label">SITEMAP FILES</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="totalSizeEstimate">0 MB</div>
-                <div class="stat-label">EST. SIZE</div>
-            </div>
-        </div>
-
-        <!-- MAIN GRID -->
-        <div class="main-grid">
-            <!-- LEFT PANEL - BATCH INPUT -->
-            <div class="card">
-                <h2>
-                    <span>📦</span>
-                    1. BATCH KEYWORD INPUT
-                </h2>
+            
+            <!-- AREA HASIL -->
+            <div id="resultContainer" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="display: flex; align-items: center; gap: 10px;">
+                        <span>📋</span> HASIL GENERATE
+                    </h2>
+                    <div>
+                        <button onclick="copyHTML()" style="padding: 10px 25px; background: #2563eb;">📋 Copy HTML</button>
+                        <button onclick="downloadHTML()" style="padding: 10px 25px; background: #10b981;">⬇️ Download</button>
+                    </div>
+                </div>
                 
-                <div class="form-group">
-                    <label>🎯 MASUKKAN KEYWORD (1 baris = 1 keyword)</label>
-                    <textarea id="batchKeywords" placeholder="review laptop gaming&#10;cara diet sehat&#10;tempat wisata jogja&#10;rekomendasi hp 2026&#10;model rambut pria">review laptop gaming
-cara diet sehat
-tempat wisata jogja
-rekomendasi hp 2026</textarea>
-                    <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 6px;">✅ Setiap baris = 1 keyword → akan generate 100 artikel per keyword</p>
-                </div>
-
-                <div class="form-group">
-                    <label>📄 JUMLAH ARTIKEL PER KEYWORD</label>
-                    <select id="articlesPerKeyword">
-                        <option value="10">10 artikel (ringan)</option>
-                        <option value="25">25 artikel</option>
-                        <option value="50">50 artikel</option>
-                        <option value="100" selected>100 artikel (recommended)</option>
-                        <option value="250">250 artikel (expert)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>🏷️ PREFIX JUDUL (opsional)</label>
-                    <input type="text" id="titlePrefix" value="Review Terbaik " placeholder="Review Terbaik ">
-                </div>
-
-                <div class="form-group">
-                    <label>🔗 DOMAIN BASE (untuk sitemap)</label>
-                    <input type="text" id="baseDomain" value="https://money-site.com" placeholder="https://domainkamu.com">
-                </div>
-
-                <!-- HISTATS SECTION - WAJIB -->
-                <div class="histats-section">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <span style="font-size: 1.8rem;">📊</span>
-                        <span style="font-weight: 800; font-size: 1.3rem; color: white;">HISTATS COUNTER OTOMATIS</span>
-                        <span class="badge badge-success">WAJIB ISI</span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>🔑 Histats Code (dapatkan di histats.com)</label>
-                        <textarea id="histatsCode" rows="5" placeholder="&lt;!-- Histats.com START --&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-_Hasync.push(['Histats.start', '1,XXXXXXXX,4,0,0,0,00000000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('http://s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();&lt;/script&gt;
-&lt;noscript&gt;&lt;a href=&quot;http://www.histats.com&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://sstatic1.histats.com/0.gif?XXXXXXXX&amp;101&quot; alt=&quot;counter&quot; border=&quot;0&quot;&gt;&lt;/a&gt;&lt;/noscript&gt;
-&lt;!-- Histats.com END --&gt;"></textarea>
-                        <p style="color: #fbbf24; font-size: 0.85rem; margin-top: 8px;">
-                            ⚡ Copy paste kode dari dashboard Histats Anda. Akan muncul di FOOTER semua halaman.
-                        </p>
-                    </div>
-                    <p style="color: #94a3b8; font-size: 0.85rem;">
-                        📘 <a href="https://www.histats.com" target="_blank" style="color: #60a5fa;">Daftar Histats gratis</a> → Add Website → Counter Code
-                    </p>
-                </div>
-
-                <button class="btn" onclick="generateMassSites()" style="font-size: 1.2rem; padding: 20px;">
-                    ⚡ GENERATE MASS SITES (1000+ ARTIKEL)
-                </button>
-                <p style="color: #94a3b8; text-align: center; margin-top: 12px;">
-                    🚀 Proses di browser, 100% offline, langsung jadi file HTML
-                </p>
+                <!-- PREVIEW ARTIKEL -->
+                <div id="previewArea" class="result-area"></div>
+                
+                <!-- HTML SOURCE -->
+                <h3 style="margin: 30px 0 15px;">📎 HTML Source Code</h3>
+                <pre id="htmlSource" style="max-height: 400px; overflow-y: auto;">&lt;!-- Hasil akan muncul di sini --&gt;</pre>
             </div>
-
-            <!-- RIGHT PANEL - OUTPUT & SITEMAP -->
-            <div class="card">
-                <h2>
-                    <span>📂</span>
-                    2. OUTPUT GENERATOR
-                </h2>
-
-                <div style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
-                    <div style="flex: 1; background: #0f172a; border-radius: 16px; padding: 20px;">
-                        <div style="font-size: 2rem; font-weight: 800; color: #3b82f6;" id="liveArticleCount">0</div>
-                        <div style="color: #94a3b8;">Artikel siap</div>
-                    </div>
-                    <div style="flex: 1; background: #0f172a; border-radius: 16px; padding: 20px;">
-                        <div style="font-size: 2rem; font-weight: 800; color: #10b981;" id="liveSitemapCount">0</div>
-                        <div style="color: #94a3b8;">Sitemap files</div>
-                    </div>
-                </div>
-
-                <!-- ACTION BUTTONS -->
-                <div class="footer-actions">
-                    <button class="btn" onclick="downloadAllAsZip()" style="background: #10b981; width: auto; flex: 1;" id="downloadZipBtn">
-                        📦 DOWNLOAD ALL (ZIP)
-                    </button>
-                    <button class="btn btn-warning" onclick="downloadSitemapOnly()" style="width: auto; flex: 0.5;" id="downloadSitemapBtn">
-                        🗺️ SITEMAP.XML
-                    </button>
-                    <button class="btn" onclick="resetGenerator()" style="background: #475569; width: auto; flex: 0.4;">
-                        🔄 RESET
-                    </button>
-                </div>
-
-                <!-- SITEMAP PREVIEW -->
-                <div class="sitemap-preview" id="sitemapPreviewArea">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span style="font-weight: 700; color: #10b981;">🗺️ sitemap.xml (otomatis)</span>
-                        <span class="badge badge-success" id="sitemapUrlCount">0 URLs</span>
-                    </div>
-                    <pre id="sitemapPreviewContent" style="max-height: 200px; overflow-y: auto; background: #1e293b; padding: 15px; border-radius: 12px; color: #cbd5e1; font-size: 0.8rem;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
-  <span style="color: #64748b;">  &lt;!-- Generate dulu untuk preview --&gt;</span>
-&lt;/urlset&gt;</pre>
-                </div>
-
-                <!-- LIVE FILE LIST -->
-                <div style="margin-top: 25px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-                        <span style="font-weight: 700;">📋 FILE YANG DIGENERATE:</span>
-                        <span id="fileCounter" style="color: #94a3b8;">0 files</span>
-                    </div>
-                    <div class="file-list" id="fileListContainer">
-                        <div class="file-item" style="color: #64748b;">⏳ Generate untuk melihat daftar file...</div>
-                    </div>
-                </div>
+            
+            <div id="loading" style="display: none; text-align: center; padding: 40px;">
+                <div style="border: 4px solid #e2e8f0; border-top: 4px solid #0f172a; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px;"></div>
+                <p style="color: #475569;">Mengambil data dari Google News RSS...</p>
             </div>
         </div>
-
-        <!-- PROGRESS AREA -->
-        <div class="progress-area" id="progressArea" style="display: none;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <span style="font-weight: 700;" id="progressStatus">⚙️ Generating articles...</span>
-                <span id="progressPercentage" style="color: #3b82f6; font-weight: 700;">0%</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-            </div>
-            <p id="progressDetail" style="color: #94a3b8; margin-top: 12px;">Memproses 0 dari 0 artikel...</p>
+        
+        <!-- INSTRUKSI SIMPLE -->
+        <div class="card" style="background: #f0f9ff; border: 1px solid #bae6fd;">
+            <h3 style="display: flex; gap: 10px; margin-bottom: 15px;">✨ CARA PAKAI (SIMPLE BANGET):</h3>
+            <ol style="margin-left: 20px; color: #0c4a6e;">
+                <li style="margin-bottom: 8px;">Ketik keyword (contoh: "cryptocurrency", "climate change")</li>
+                <li style="margin-bottom: 8px;">Tempel script iklan Anda di kolom ADS (Adsterra, dll)</li>
+                <li style="margin-bottom: 8px;">Klik GENERATE → Langsung jadi HTML</li>
+                <li style="margin-bottom: 8px;">Copy HTML → Paste ke WordPress/Blogger</li>
+            </ol>
+            <p style="margin-top: 15px; color: #0369a1;"><strong>✅ 100% GRATIS, TANPA API KEY, PAKAI RSS GOOGLE NEWS</strong></p>
         </div>
     </div>
 
     <script>
-        // ============================================
-        // MASS STATIC SITE GENERATOR - 1000+ ARTIKEL
-        // ============================================
+        // ⚡ SIMPLE GOOGLE NEWS RSS FETCHER
+        // Sumber: https://news.google.com/rss/search?q=KEYWORD
+        // Tidak perlu API key, tidak perlu CORS proxy berkat AllOrigins
         
-        let generatedFiles = [];
-        let generatedSitemap = '';
-        let totalArticlesGenerated = 0;
-        let totalKeywords = 0;
-        let globalSitemapUrls = [];
+        const PROXY_URL = 'https://api.allorigins.win/raw?url=';
+        let lastGeneratedHTML = '';
+        let lastArticles = [];
 
-        // Variabel untuk menyimpan kode Histats
-        let globalHistatsCode = '';
-
-        // Templates artikel untuk variasi konten
-        const articleTemplates = [
-            {
-                title: "Panduan Lengkap %s untuk Pemula %d",
-                content: "Jika Anda sedang mencari informasi tentang %s, Anda berada di tempat yang tepat. Artikel ini akan membahas secara detail semua aspek penting seputar %s yang perlu Anda ketahui di tahun 2026.\n\n%s adalah topik yang semakin populer karena manfaatnya yang luar biasa. Banyak orang mulai beralih ke %s untuk mendapatkan hasil maksimal.\n\n## Apa itu %s?\n%s merupakan singkatan dari... Secara sederhana, %s adalah cara terbaik untuk mencapai tujuan Anda dengan efisien dan efektif.\n\n## Manfaat Utama %s\n1. Meningkatkan produktivitas hingga 3x lipat\n2. Menghemat waktu dan biaya operasional\n3. Hasil yang konsisten dan terukur\n4. Mudah diimplementasikan untuk pemula\n\n## Langkah-langkah Memulai %s\nPertama, pastikan Anda sudah memahami konsep dasar %s. Kedua, siapkan peralatan yang dibutuhkan. Ketiga, praktikkan secara rutin selama 30 hari.\n\n## Rekomendasi Produk %s Terbaik\nBerdasarkan riset kami, berikut adalah rekomendasi produk %s dengan rating tertinggi di pasaran saat ini...\n\n## Kesimpulan\n%s adalah investasi jangka panjang yang akan memberikan return berlipat. Mulai sekarang, jangan tunda lagi!"
-            },
-            {
-                title: "10 Rekomendasi %s Terbaik %d - Harga & Spesifikasi",
-                content: "Mencari %s terbaik? Kami telah menguji 20+ produk %s dan menyaringnya menjadi 10 rekomendasi teratas untuk Anda.\n\n## 1. %s Premium Choice\nProduk ini unggul dalam hal kualitas dan durabilitas. Cocok untuk penggunaan harian.\n\n## 2. %s Budget Friendly\nPilihan tepat untuk Anda yang memiliki anggaran terbatas namun tetap menginginkan kualitas.\n\n## 3. %s Best Seller\nProduk paling laris di tahun 2026 dengan ribuan ulasan positif.\n\n## 4. %s Editor Choice\nTim editor memilih produk ini karena inovasinya yang groundbreaking.\n\n## 5. %s Value for Money\nKombinasi sempurna antara harga terjangkau dan fitur lengkap.\n\n## 6-10. Rekomendasi Lainnya\nMasih ada 5 rekomendasi %s lainnya yang tidak kalah menarik...\n\n## Tips Membeli %s\nSelalu cek garansi, bandingkan harga di beberapa toko, dan baca review pengguna sebelum membeli."
-            },
-            {
-                title: "Cara Mudah Menguasai %s dalam 7 Hari %d",
-                content: "Apakah Anda ingin menguasai %s dalam waktu singkat? Metode 7 hari ini telah terbukti berhasil untuk ribuan orang.\n\n## Hari 1: Pengenalan Dasar %s\nMulai dengan memahami terminologi dan konsep fundamental %s. Jangan terburu-buru, pahami dulu fondasinya.\n\n## Hari 2: Praktik Pertama %s\nLakukan praktik sederhana selama 30 menit. Fokus pada konsistensi, bukan kesempurnaan.\n\n## Hari 3: Teknik Lanjutan %s\nSetelah dasar kuat, saatnya mempelajari teknik yang lebih advanced.\n\n## Hari 4: Troubleshooting %s\nPelajari masalah umum yang sering terjadi dan cara mengatasinya.\n\n## Hari 5: Optimalisasi %s\nBagaimana cara membuat %s Anda bekerja 2x lebih efisien.\n\n## Hari 6: Studi Kasus %s\nLihat bagaimana orang sukses menerapkan %s dalam kehidupan mereka.\n\n## Hari 7: Evaluasi dan Next Step\nUkur progress Anda dan rencanakan pengembangan skill %s ke depannya.\n\nDengan mengikuti panduan ini, dijamin Anda akan jauh lebih paham tentang %s dibandingkan 7 hari yang lalu!"
-            },
-            {
-                title: "Review Lengkap %s: Apakah Worth It? %d",
-                content: "Saat ini banyak orang membicarakan tentang %s. Tapi, apakah %s benar-benar layak untuk dicoba? Tim kami melakukan riset mendalam selama 2 minggu untuk menjawab pertanyaan ini.\n\n## Kelebihan %s\n✓ Harga kompetitif di kelasnya\n✓ Fitur lengkap dan update terus\n✓ Dukungan komunitas yang besar\n✓ Mudah digunakan untuk pemula\n\n## Kekurangan %s\n✗ Butuh waktu untuk adaptasi awal\n✗ Beberapa fitur masih dalam pengembangan\n✗ Tidak cocok untuk skala enterprise\n\n## Testimoni Pengguna\n\"Saya sudah menggunakan %s selama 3 bulan dan hasilnya luar biasa!\" - Andi, 32 tahun\n\n\"Awalnya ragu, tapi setelah coba trial, sekarang jadi langganan.\" - Budi, 28 tahun\n\n## Perbandingan dengan Kompetitor\n| Fitur | %s | Kompetitor A | Kompetitor B |\n|-------|-----|--------------|--------------|\n| Harga | Rp 500k | Rp 750k | Rp 450k |\n| Fitur X | ✅ | ✅ | ❌ |\n| Fitur Y | ✅ | ❌ | ✅ |\n| Support 24/7 | ✅ | ❌ | ❌ |\n\n## Verdict\n%s sangat direkomendasikan untuk individu dan small business yang mencari solusi terjangkau namun berkualitas."
-            },
-            {
-                title: "5 Kesalahan Fatal Saat Menggunakan %s %d",
-                content: "Banyak orang gagal mendapatkan manfaat maksimal dari %s karena 5 kesalahan fatal ini. Hindari agar sukses!\n\n## Kesalahan #1: Tidak Riset Sebelum Memilih %s\nAkibatnya, membeli produk/jasa yang tidak sesuai kebutuhan. Solusi: Tentukan dulu tujuan Anda.\n\n## Kesalahan #2: Mengabaikan Basic %s\nLangsung ke level advance tanpa kuasai dasar. Akibatnya: pusing dan menyerah di tengah jalan.\n\n## Kesalahan #3: Tidak Konsisten\nHanya mencoba 1-2 kali lalu berhenti. %s butuh konsistensi untuk melihat hasil.\n\n## Kesalahan #4: Salah Ekspektasi\nMengharapkan hasil instan. Padahal %s adalah proses, bukan magic.\n\n## Kesalahan #5: Tidak Update\n%s terus berkembang. Yang relevan tahun lalu belum tentu relevan sekarang.\n\n## Cara Menghindari Kesalahan Tersebut\n1. Lakukan riset minimal 3 sumber sebelum memutuskan\n2. Ikuti kursus/panduan step-by-step\n3. Buat jadwal rutin dan patuhi\n4. Tetapkan milestone realistis\n5. Subscribe newsletter dan follow expert di bidang %s\n\nDengan menghindari 5 kesalahan di atas, perjalanan %s Anda akan jauh lebih mulus dan menyenangkan!"
-            }
-        ];
-
-        // Variasi kata untuk konten agar lebih unik
-        const adjectives = ["terbaik", "terbaru", "premium", "recommended", "populer", "viral", "hits", "kekinian", "wajib coba", "limited"];
-        const niches = ["2026", "2025", "edisi spesial", "versi terupdate", "original", "asli", "garansi resmi"];
-        const callToAction = ["Beli Sekarang", "Cek Harga", "Lihat Promo", "Dapatkan Diskon", "Order via WhatsApp", "Kunjungi Official Store"];
-
-        // Generate 100 artikel unik dari 1 keyword
-        function generateArticlesFromKeyword(keyword, indexKeyword, count = 100) {
-            const articles = [];
-            const baseDomain = document.getElementById('baseDomain').value.replace(/\/$/, '');
-            const prefix = document.getElementById('titlePrefix').value || '';
+        async function fetchGoogleNews() {
+            const keyword = document.getElementById('keywordInput').value.trim();
+            const limit = parseInt(document.getElementById('limitInput').value) || 10;
             
-            for (let i = 1; i <= count; i++) {
-                // Pilih template secara acak dengan variasi
-                const template = articleTemplates[Math.floor(Math.random() * articleTemplates.length)];
+            if (!keyword) {
+                alert('Masukkan keyword!');
+                return;
+            }
+
+            // Tampilkan loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('resultContainer').style.display = 'none';
+
+            try {
+                // Format URL RSS Google News
+                // Format: https://news.google.com/rss/search?q=KEYWORD
+                const query = encodeURIComponent(keyword);
+                const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=id&gl=ID&ceid=ID:id`;
                 
-                // Generate judul unik
-                let title = template.title
-                    .replace('%s', keyword.charAt(0).toUpperCase() + keyword.slice(1))
-                    .replace('%d', niches[Math.floor(Math.random() * niches.length)]);
+                // Ambil via proxy CORS
+                const response = await fetch(PROXY_URL + encodeURIComponent(rssUrl));
                 
-                // Tambah variasi judul
-                if (Math.random() > 0.5) {
-                    title = prefix + ' ' + title;
-                }
-                if (Math.random() > 0.7) {
-                    title = title + ' ' + adjectives[Math.floor(Math.random() * adjectives.length)];
-                }
-
-                // Generate slug untuk URL
-                const slug = title.toLowerCase()
-                    .replace(/[^\w\s]/gi, '')
-                    .replace(/\s+/g, '-')
-                    .substring(0, 70);
+                if (!response.ok) throw new Error('Gagal mengambil data');
                 
-                const articleId = `${keyword.replace(/\s+/g, '-')}-${indexKeyword}-${i}-${Date.now()}`.substring(0, 50);
-                const urlPath = `/article/${keyword.replace(/\s+/g, '-')}/${slug}-${i}.html`;
-                const fullUrl = `${baseDomain}${urlPath}`;
-
-                // Generate konten dengan variasi
-                let content = template.content;
-                for (let j = 0; j < 10; j++) {
-                    content = content.replace(/%s/g, keyword);
-                }
-
-                // Tambah paragraf random biar makin unik
-                const extraParagraphs = [
-                    `<p><strong>Update ${new Date().toLocaleDateString('id-ID')}:</strong> Informasi terbaru seputar ${keyword} menunjukkan peningkatan minat sebesar ${Math.floor(Math.random() * 50 + 20)}% dibanding bulan lalu.</p>`,
-                    `<div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0;"><strong>💡 Pro Tip:</strong> ${Math.random() > 0.5 ? 'Jangan lupa bandingkan harga di 3 toko berbeda sebelum membeli ' + keyword : 'Kombinasikan ' + keyword + ' dengan teknik lain untuk hasil maksimal'}</div>`,
-                    `<h3>FAQ: Pertanyaan Umum Tentang ${keyword}</h3><p><strong>Q: Berapa lama waktu yang dibutuhkan untuk menguasai ${keyword}?</strong><br>A: Rata-rata orang membutuhkan ${Math.floor(Math.random() * 20 + 10)} jam untuk mencapai level basic.</p>`,
-                    `<p>🔥 Promo spesial ${keyword} bulan ini: Diskon ${Math.floor(Math.random() * 30 + 10)}% + free shipping. <a href="https://affiliate.com/${slug}" style="color: #2563eb; font-weight: bold;" target="_blank" rel="nofollow">Klik di sini</a> sebelum kehabisan!</p>`
-                ];
-
-                content += '\n\n' + extraParagraphs[Math.floor(Math.random() * extraParagraphs.length)];
-
-                // HTML Lengkap dengan Histats
-                const html = generateHTMLPage(title, content, keyword, fullUrl, articleId);
+                const xmlText = await response.text();
                 
-                articles.push({
-                    id: articleId,
-                    keyword: keyword,
-                    title: title,
-                    slug: slug,
-                    url: urlPath,
-                    fullUrl: fullUrl,
-                    html: html,
-                    filename: `keyword-${keyword.replace(/\s+/g, '-')}/article-${i}-${slug}.html`,
-                    lastmod: new Date().toISOString().split('T')[0]
+                // Parse XML
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                
+                // Ambil items
+                const items = xmlDoc.querySelectorAll('item');
+                const articles = [];
+                
+                items.forEach((item, index) => {
+                    if (index >= limit) return;
+                    
+                    const title = item.querySelector('title')?.textContent || 'No title';
+                    let link = item.querySelector('link')?.textContent || '#';
+                    const pubDate = item.querySelector('pubDate')?.textContent || '';
+                    const source = item.querySelector('source')?.textContent || 'Google News';
+                    let description = item.querySelector('description')?.textContent || '';
+                    
+                    // Bersihkan CDATA dan HTML entities
+                    description = description.replace(/<!\[CDATA\[|\]\]>/g, '');
+                    
+                    // Format tanggal
+                    let dateFormatted = 'Baru saja';
+                    if (pubDate) {
+                        const d = new Date(pubDate);
+                        dateFormatted = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                    }
+                    
+                    articles.push({
+                        title,
+                        link,
+                        pubDate: dateFormatted,
+                        source,
+                        description: description.substring(0, 200) + '...'
+                    });
                 });
+
+                if (articles.length === 0) {
+                    alert('Tidak ada berita ditemukan untuk keyword ini.');
+                    document.getElementById('loading').style.display = 'none';
+                    return;
+                }
+
+                lastArticles = articles;
+                
+                // Generate HTML preview
+                const previewHTML = generatePreviewHTML(articles, keyword);
+                document.getElementById('previewArea').innerHTML = previewHTML;
+                
+                // Generate full HTML page
+                const fullHTML = generateFullHTML(articles, keyword);
+                lastGeneratedHTML = fullHTML;
+                document.getElementById('htmlSource').textContent = fullHTML;
+                
+                // Tampilkan hasil
+                document.getElementById('resultContainer').style.display = 'block';
+                
+            } catch (error) {
+                console.error(error);
+                alert('Error: ' + error.message + '\n\nCoba lagi nanti.');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
             }
-            
-            return articles;
         }
 
-        // Generate HTML page dengan Histats otomatis
-        function generateHTMLPage(title, content, keyword, canonicalUrl, articleId) {
-            const baseDomain = document.getElementById('baseDomain').value.replace(/\/$/, '');
-            const today = new Date();
-            const dateString = today.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        function generatePreviewHTML(articles, keyword) {
+            const adsScript = document.getElementById('adsScript').value.trim() || '<!-- Iklan akan muncul di sini -->';
             
-            // Ambil kode Histats dari form
-            let histatsCode = document.getElementById('histatsCode').value.trim();
-            if (!histatsCode) {
-                // Default dummy kalau kosong (tapi warning)
-                histatsCode = '<!-- Histats not configured -->';
-            }
+            let html = `
+                <div style="margin-bottom: 25px;">
+                    <h1 style="font-size: 1.8rem; margin-bottom: 10px;">Berita Terbaru ${keyword} 2026</h1>
+                    <p style="color: #475569; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">Kumpulan berita dan artikel terkini seputar ${keyword} yang dirangkum dari Google News.</p>
+                </div>
+                
+                <!-- BANNER ADS -->
+                <div style="margin: 20px 0 30px; padding: 15px; background: #fef9c3; border-radius: 12px; text-align: center;">
+                    ${adsScript}
+                </div>
+            `;
+            
+            articles.forEach((article, idx) => {
+                html += `
+                    <div class="news-item">
+                        <div class="news-title">
+                            <a href="${article.link}" target="_blank" rel="nofollow">${article.title}</a>
+                        </div>
+                        <div class="news-meta">
+                            <span>📰 ${article.source}</span>
+                            <span>📅 ${article.pubDate}</span>
+                        </div>
+                        <div class="news-snippet">
+                            ${article.description}
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <a href="${article.link}" target="_blank" rel="nofollow" style="color: #2563eb; font-weight: 600; text-decoration: none;">Baca selengkapnya →</a>
+                        </div>
+                    </div>
+                `;
+                
+                // Sisip iklan setiap 3 artikel
+                if ((idx + 1) % 3 === 0 && idx < articles.length - 1) {
+                    html += `
+                        <div style="margin: 20px 0; padding: 15px; background: #f1f5f9; border-radius: 12px; text-align: center; border: 1px dashed #94a3b8;">
+                            <p style="color: #475569; margin-bottom: 10px;">📢 SPONSOR</p>
+                            ${adsScript}
+                        </div>
+                    `;
+                }
+            });
+            
+            return html;
+        }
 
+        function generateFullHTML(articles, keyword) {
+            const adsScript = document.getElementById('adsScript').value.trim() || '<!-- Iklan akan muncul di sini -->';
+            const today = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            
             return `<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <meta name="description" content="Artikel lengkap tentang ${keyword}: panduan, tips, review, dan rekomendasi terbaru 2026. Baca selengkapnya di sini.">
-    <meta name="keywords" content="${keyword}, ${keyword} terbaik, review ${keyword}, harga ${keyword}, tips ${keyword}">
-    <meta name="author" content="MoneySite Pro">
+    <title>Berita Terbaru ${keyword} - Update ${today}</title>
+    <meta name="description" content="Kumpulan berita dan artikel terkini seputar ${keyword} dari berbagai sumber terpercaya. Update setiap hari.">
+    <meta name="keywords" content="${keyword}, berita ${keyword}, update ${keyword}, news ${keyword}">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="${canonicalUrl}">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="${title}">
-    <meta property="og:description" content="Review dan panduan lengkap ${keyword} untuk pemula hingga expert.">
-    <meta property="og:url" content="${canonicalUrl}">
-    <meta property="og:site_name" content="MoneySite Pro">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="${title}">
-    <meta name="twitter:description" content="Review dan panduan lengkap ${keyword} untuk pemula hingga expert.">
-    
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "${title}",
-        "description": "Review dan panduan lengkap ${keyword} untuk pemula hingga expert.",
-        "keywords": "${keyword}",
-        "datePublished": "${today.toISOString().split('T')[0]}",
-        "dateModified": "${today.toISOString().split('T')[0]}",
-        "author": {
-            "@type": "Person",
-            "name": "Redaksi MoneySite"
-        }
-    }
-    </script>
-    
+    <link rel="canonical" href="https://domain-anda.com/${keyword.replace(/\s+/g, '-')}.html">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #1e293b; background: #f8fafc; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; line-height: 1.6; }
         .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; }
-        .article-card { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; }
-        h1 { font-size: 2.2rem; margin-bottom: 20px; color: #0f172a; }
-        .meta { color: #64748b; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; }
-        .content { font-size: 1.05rem; color: #334155; }
-        .content h2 { font-size: 1.5rem; margin: 40px 0 15px; color: #0f172a; }
-        .content h3 { font-size: 1.2rem; margin: 30px 0 10px; color: #1e293b; }
-        .content p { margin-bottom: 20px; }
-        .content ul, .content ol { margin-bottom: 20px; padding-left: 25px; }
-        .footer { margin-top: 50px; padding-top: 25px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 0.9rem; text-align: center; }
-        .cta { background: linear-gradient(145deg, #fef9c3, #fef08a); border-radius: 16px; padding: 25px; margin: 40px 0; text-align: center; border: 1px solid #facc15; }
-        .cta-button { display: inline-block; background: #2563eb; color: white; padding: 14px 32px; border-radius: 40px; text-decoration: none; font-weight: 700; }
-        @media (max-width: 768px) { .container { padding: 15px; } .article-card { padding: 25px; } h1 { font-size: 1.6rem; } }
+        .header { background: white; border-radius: 24px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; }
+        .article-card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 20px; border: 1px solid #e2e8f0; transition: all 0.2s; }
+        .article-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.04); border-color: #94a3b8; }
+        .article-title { font-size: 1.3rem; margin-bottom: 12px; }
+        .article-title a { color: #0f172a; text-decoration: none; font-weight: 700; }
+        .article-title a:hover { color: #2563eb; text-decoration: underline; }
+        .meta { color: #64748b; font-size: 0.9rem; margin-bottom: 15px; display: flex; gap: 20px; }
+        .snippet { color: #334155; margin-bottom: 15px; }
+        .read-more { display: inline-block; color: #2563eb; font-weight: 600; text-decoration: none; }
+        .read-more:hover { text-decoration: underline; }
+        .ads { background: linear-gradient(145deg, #fef9c3, #fef08a); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center; border: 1px solid #eab308; }
+        .footer { margin-top: 40px; padding-top: 25px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 0.9rem; text-align: center; }
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+        .sub { color: #475569; margin-bottom: 20px; }
+        @media (max-width: 768px) { .container { padding: 15px; } .article-title { font-size: 1.1rem; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="article-card">
-            <h1>${title}</h1>
-            <div class="meta">
-                <span>📅 ${dateString}</span> • 
-                <span>👤 Tim Redaksi</span> • 
-                <span>📁 Kategori: ${keyword}</span> • 
-                <span>⏱️ ${Math.floor(Math.random() * 5 + 3)} menit</span>
+        <div class="header">
+            <h1>📰 Berita ${keyword} Terkini</h1>
+            <p class="sub">Update ${today} • Dihimpun dari Google News</p>
+        </div>
+        
+        <!-- HEADER ADS -->
+        <div class="ads" style="margin-top: 0;">
+            ${adsScript}
+        </div>
+        
+        <!-- ARTIKEL -->
+        ${articles.map((article, i) => `
+            <div class="article-card">
+                <div class="article-title">
+                    <a href="${article.link}" target="_blank" rel="nofollow">${article.title}</a>
+                </div>
+                <div class="meta">
+                    <span>📰 ${article.source}</span>
+                    <span>📅 ${article.pubDate}</span>
+                </div>
+                <div class="snippet">
+                    ${article.description}
+                </div>
+                <a href="${article.link}" class="read-more" target="_blank" rel="nofollow">Baca selengkapnya →</a>
             </div>
-            
-            <div style="background: #f1f5f9; border-radius: 16px; padding: 20px; margin-bottom: 30px;">
-                <p style="font-size: 1.1rem; font-weight: 500; color: #0f172a;">
-                    🔍 Artikel ini membahas secara komprehensif tentang <strong>${keyword}</strong>, termasuk panduan lengkap, tips dari para ahli, dan rekomendasi produk terbaik.
-                </p>
-            </div>
-            
-            <div class="content">
-                ${content.replace(/\n/g, '</p><p>')}
-            </div>
-            
-            <div class="cta">
-                <h3 style="margin-bottom: 15px;">💰 Dapatkan Harga Spesial ${keyword}!</h3>
-                <p style="margin-bottom: 20px;">Klik tombol di bawah untuk cek promo dan diskon terbatas.</p>
-                <a href="https://affiliate.money-site.com/${keyword.replace(/\s+/g, '-')}" class="cta-button" target="_blank" rel="nofollow sponsored">
-                    🔥 ${callToAction[Math.floor(Math.random() * callToAction.length)]}
-                </a>
-                <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">*Harga dapat berubah sewaktu-waktu</p>
-            </div>
-            
-            <div class="footer">
-                <p>© 2026 MoneySite Pro - ${new Date().getFullYear()}. All rights reserved.</p>
-                <p style="margin-top: 10px;">Artikel ini mengandung link afiliasi. Kami mendapat komisi jika Anda melakukan pembelian tanpa biaya tambahan.</p>
-            </div>
+            ${(i + 1) % 3 === 0 ? `<div class="ads">${adsScript}</div>` : ''}
+        `).join('')}
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>© ${new Date().getFullYear()} Portal Berita ${keyword} - Hak cipta dilindungi undang-undang.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Sumber: Google News. Artikel mengandung link afiliasi/sponsor.</p>
         </div>
     </div>
     
-    <!-- HISTATS COUNTER - AUTO INSERTED -->
-    ${histatsCode}
+    <!-- Histats Counter (Ganti dengan punya Anda) -->
+    <!-- Histats.com START (async) -->
+    <script type="text/javascript">
+        _Hasync.push(['Histats.start', '1,1234567,4,0,0,0,00000000']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        (function() {
+            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+            hs.src = ('http://s10.histats.com/js15_as.js');
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+        })();
+    </script>
+    <noscript><a href="http://www.histats.com" target="_blank"><img src="http://sstatic1.histats.com/0.gif?1234567&101" alt="counter" border="0"></a></noscript>
+    <!-- Histats.com END -->
 </body>
 </html>`;
         }
 
-        // Generate sitemap.xml dari semua artikel
-        function generateSitemap(articles, baseDomain) {
-            let urls = '';
-            globalSitemapUrls = [];
-            
-            articles.forEach(article => {
-                const fullUrl = article.fullUrl || `${baseDomain}${article.url}`;
-                globalSitemapUrls.push(fullUrl);
-                
-                urls += `  <url>
-    <loc>${fullUrl}</loc>
-    <lastmod>${article.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>\n`;
-            });
-
-            return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}</urlset>`;
-        }
-
-        // MAIN GENERATOR - BATCH PRODUCTION
-        async function generateMassSites() {
-            // Reset state
-            generatedFiles = [];
-            globalSitemapUrls = [];
-            
-            // Ambil input
-            const keywordsText = document.getElementById('batchKeywords').value.trim();
-            const keywords = keywordsText.split('\n').map(k => k.trim()).filter(k => k !== '');
-            const articlesPerKeyword = parseInt(document.getElementById('articlesPerKeyword').value);
-            const baseDomain = document.getElementById('baseDomain').value.replace(/\/$/, '');
-            const histatsCode = document.getElementById('histatsCode').value.trim();
-            
-            // Validasi
-            if (keywords.length === 0) {
-                alert('❌ Masukkan minimal 1 keyword!');
-                return;
-            }
-
-            if (!histatsCode) {
-                alert('⚠️ Mohon isi kode Histats terlebih dahulu. Dapatkan gratis di histats.com');
-                return;
-            }
-
-            // Simpan global Histats code
-            globalHistatsCode = histatsCode;
-
-            // Update stat
-            totalKeywords = keywords.length;
-            document.getElementById('totalKeywordsCount').innerText = totalKeywords;
-            document.getElementById('totalArticlesCount').innerText = totalKeywords * articlesPerKeyword;
-            document.getElementById('totalSitemapCount').innerText = '1';
-            document.getElementById('totalSizeEstimate').innerText = ((totalKeywords * articlesPerKeyword * 12) / 1000).toFixed(1) + ' MB';
-
-            // Tampilkan progress
-            document.getElementById('progressArea').style.display = 'block';
-            document.getElementById('progressStatus').innerHTML = '⚙️ Generating massive articles...';
-            document.getElementById('fileListContainer').innerHTML = '';
-            
-            let allArticles = [];
-            let progress = 0;
-            const totalTarget = keywords.length * articlesPerKeyword;
-
-            // Loop per keyword
-            for (let k = 0; k < keywords.length; k++) {
-                const keyword = keywords[k];
-                document.getElementById('progressDetail').innerHTML = `Memproses keyword "${keyword}" (${k+1}/${keywords.length})...`;
-                
-                // Generate 100 artikel per keyword
-                const articles = generateArticlesFromKeyword(keyword, k+1, articlesPerKeyword);
-                allArticles = [...allArticles, ...articles];
-                
-                // Update progress
-                progress = ((k + 1) / keywords.length) * 100;
-                document.getElementById('progressFill').style.width = `${progress}%`;
-                document.getElementById('progressPercentage').innerHTML = `${Math.floor(progress)}%`;
-                
-                // Update file list realtime
-                updateFileList(allArticles);
-                document.getElementById('liveArticleCount').innerHTML = allArticles.length;
-                
-                // Simulasi async biar UI tidak freeze
-                await new Promise(r => setTimeout(r, 50));
-            }
-
-            // Generate sitemap
-            const sitemapContent = generateSitemap(allArticles, baseDomain);
-            generatedSitemap = sitemapContent;
-            
-            // Add sitemap ke file list
-            allArticles.push({
-                filename: 'sitemap.xml',
-                content: sitemapContent,
-                isSitemap: true
-            });
-            
-            generatedFiles = allArticles;
-            totalArticlesGenerated = allArticles.length - 1; // exclude sitemap
-            
-            // Update UI
-            document.getElementById('liveArticleCount').innerHTML = totalArticlesGenerated;
-            document.getElementById('liveSitemapCount').innerHTML = '1';
-            document.getElementById('sitemapUrlCount').innerHTML = `${globalSitemapUrls.length} URLs`;
-            document.getElementById('progressFill').style.width = '100%';
-            document.getElementById('progressPercentage').innerHTML = '100%';
-            document.getElementById('progressStatus').innerHTML = '✅ Selesai! ' + totalArticlesGenerated + ' artikel + sitemap.xml siap didownload';
-            document.getElementById('progressDetail').innerHTML = `✅ Berhasil generate ${totalArticlesGenerated} artikel dari ${keywords.length} keyword. Siap deploy!`;
-            
-            // Preview sitemap
-            document.getElementById('sitemapPreviewContent').innerHTML = escapeHtml(sitemapContent.substring(0, 800) + '...\n  <!-- Preview truncated -->\n</urlset>');
-            
-            // Enable download button
-            document.getElementById('downloadZipBtn').disabled = false;
-            document.getElementById('downloadSitemapBtn').disabled = false;
-            
-            // Update file counter
-            document.getElementById('fileCounter').innerHTML = `${generatedFiles.length} files`;
-        }
-
-        // Update file list di UI
-        function updateFileList(articles) {
-            const container = document.getElementById('fileListContainer');
-            let html = '';
-            
-            // Tampilkan folder per keyword
-            const keywordGroups = {};
-            articles.forEach(article => {
-                if (article.keyword) {
-                    if (!keywordGroups[article.keyword]) keywordGroups[article.keyword] = 0;
-                    keywordGroups[article.keyword]++;
-                }
-            });
-            
-            for (let keyword in keywordGroups) {
-                html += `<div class="file-item" style="background: #1e293b; font-weight: 600;">
-                            📁 keyword-${keyword.replace(/\s+/g, '-')}/ 
-                            <span style="color: #3b82f6; margin-left: auto;">${keywordGroups[keyword]} files</span>
-                        </div>`;
-            }
-            
-            if (articles.some(a => a.isSitemap)) {
-                html += `<div class="file-item" style="color: #10b981;">
-                            🗺️ sitemap.xml 
-                            <span style="margin-left: auto;">${globalSitemapUrls.length} URLs</span>
-                        </div>`;
-            }
-            
-            if (html === '') {
-                html = '<div class="file-item" style="color: #64748b;">⏳ Generating...</div>';
-            }
-            
-            container.innerHTML = html;
-        }
-
-        // Download semua sebagai ZIP (simulasi - real implementation akan pakai JSZip)
-        function downloadAllAsZip() {
-            if (generatedFiles.length === 0) {
+        function copyHTML() {
+            if (!lastGeneratedHTML) {
                 alert('Generate dulu!');
                 return;
             }
-            
-            alert('📦 PRO FEATURE: Dalam versi full, semua ' + totalArticlesGenerated + ' artikel + sitemap.xml akan di-download sebagai ZIP.\n\nUntuk demo, Anda bisa download sitemap.xml terlebih dahulu.');
-            
-            // Di sini seharusnya implementasi JSZip
-            // Tapi untuk keperluan demo, kita trigger download sitemap
-            downloadSitemapOnly();
+            navigator.clipboard.writeText(lastGeneratedHTML);
+            alert('✅ HTML berhasil dicopy!');
         }
 
-        // Download sitemap.xml
-        function downloadSitemapOnly() {
-            if (!generatedSitemap) {
+        function downloadHTML() {
+            if (!lastGeneratedHTML) {
                 alert('Generate dulu!');
                 return;
             }
-            
-            const blob = new Blob([generatedSitemap], { type: 'application/xml' });
+            const keyword = document.getElementById('keywordInput').value.trim().replace(/\s+/g, '-');
+            const blob = new Blob([lastGeneratedHTML], { type: 'text/html' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `sitemap-${Date.now()}.xml`;
-            document.body.appendChild(a);
+            a.download = `berita-${keyword}-${Date.now()}.html`;
             a.click();
-            document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
         }
 
-        // Reset generator
-        function resetGenerator() {
-            generatedFiles = [];
-            generatedSitemap = '';
-            totalArticlesGenerated = 0;
-            globalSitemapUrls = [];
-            
-            document.getElementById('liveArticleCount').innerHTML = '0';
-            document.getElementById('liveSitemapCount').innerHTML = '0';
-            document.getElementById('fileListContainer').innerHTML = '<div class="file-item" style="color: #64748b;">⏳ Generate untuk melihat daftar file...</div>';
-            document.getElementById('progressArea').style.display = 'none';
-            document.getElementById('sitemapPreviewContent').innerHTML = `&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
-  &lt;!-- Generate dulu untuk preview --&gt;
-&lt;/urlset&gt;`;
-            document.getElementById('sitemapUrlCount').innerHTML = '0 URLs';
-            document.getElementById('totalKeywordsCount').innerHTML = '0';
-            document.getElementById('totalArticlesCount').innerHTML = '0';
-            document.getElementById('totalSitemapCount').innerHTML = '0';
-            document.getElementById('totalSizeEstimate').innerHTML = '0 MB';
-            document.getElementById('fileCounter').innerHTML = '0 files';
-        }
-
-        // Escape HTML untuk preview
-        function escapeHtml(text) {
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        // Auto generate sample on load
+        // Auto generate on load dengan sample
         window.onload = function() {
-            // Set default Histats dummy untuk demo
-            if (!document.getElementById('histatsCode').value.trim()) {
-                document.getElementById('histatsCode').value = `<!-- Histats.com START (async) -->
-<script type="text/javascript">
-_Hasync.push(['Histats.start', '1,1234567,4,0,0,0,00000000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-  var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-  hs.src = ('http://s10.histats.com/js15_as.js');
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();
-</script>
-<noscript><a href="http://www.histats.com" target="_blank"><img src="http://sstatic1.histats.com/0.gif?1234567&101" alt="counter" border="0"></a></noscript>
-<!-- Histats.com END -->`;
-            }
-            
-            // Update stats preview
-            const keywords = document.getElementById('batchKeywords').value.split('\n').filter(k => k.trim());
-            document.getElementById('totalKeywordsCount').innerText = keywords.length;
-            document.getElementById('totalArticlesCount').innerText = keywords.length * 100;
-            document.getElementById('totalSitemapCount').innerText = '1';
-            document.getElementById('totalSizeEstimate').innerText = ((keywords.length * 100 * 12) / 1000).toFixed(1) + ' MB';
+            setTimeout(fetchGoogleNews, 500);
         };
     </script>
 </body>
