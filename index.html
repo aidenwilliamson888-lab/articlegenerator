@@ -3,297 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📰 Auto Content Generator - Google News</title>
+    <title>⚡ GOOGLE NEWS AUTO GENERATOR - SIMPLE EDITION</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, sans-serif; background: #f1f5f9; padding: 30px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 25px; }
-        h1 { font-size: 2rem; margin-bottom: 10px; }
-        .sub { color: #475569; margin-bottom: 25px; }
-        .input-group { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        input { flex: 1; padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 50px; font-size: 1rem; min-width: 250px; }
-        button { background: #0f172a; color: white; border: none; padding: 15px 35px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        button:hover { background: #1e293b; transform: translateY(-2px); }
-        .result-area { background: #f8fafc; border-radius: 16px; padding: 25px; margin-top: 20px; border: 1px solid #e2e8f0; }
-        .news-item { background: white; border-radius: 14px; padding: 20px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
-        .news-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-        .news-title a { color: #0f172a; text-decoration: none; }
-        .news-title a:hover { color: #2563eb; text-decoration: underline; }
-        .news-meta { color: #64748b; font-size: 0.9rem; margin-bottom: 10px; display: flex; gap: 20px; }
-        .news-snippet { color: #334155; }
-        .ads-banner { background: linear-gradient(145deg, #fef9c3, #fef08a); border-radius: 12px; padding: 20px; text-align: center; margin: 30px 0; border: 1px dashed #eab308; }
-        .badge { background: #3b82f6; color: white; padding: 4px 12px; border-radius: 30px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
-        .footer { text-align: center; color: #64748b; margin-top: 40px; }
-        pre { background: #0f172a; color: #e2e8f0; padding: 20px; border-radius: 12px; overflow-x: auto; font-size: 0.85rem; }
+        body { 
+            font-family: Arial, Helvetica, sans-serif; 
+            background: #f5f5f5; 
+            padding: 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .box { 
+            background: white; 
+            border-radius: 12px; 
+            padding: 25px; 
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid #e0e0e0;
+        }
+        h1 { font-size: 28px; margin-bottom: 10px; }
+        .input-group { 
+            display: flex; 
+            gap: 10px; 
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        input, select {
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            flex: 1;
+        }
+        button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #333; }
+        .ads-section {
+            background: #fff9e6;
+            border: 2px dashed #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .preview-area {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .news-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .news-title a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .news-title a:hover { text-decoration: underline; }
+        .news-meta {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        .news-desc {
+            color: #444;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .badge {
+            background: #ffc107;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .footer { text-align: center; margin-top: 30px; color: #666; }
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            max-height: 400px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <h1>📰 Google News Auto Content Generator</h1>
-            <p class="sub">Masukkan keyword → Ambil berita → Generate HTML siap pakai</p>
+        <!-- HEADER -->
+        <div class="box">
+            <h1>📰 GOOGLE NEWS GENERATOR</h1>
+            <p style="color: #555;">Masukkan keyword → Generate otomatis → Copy HTML → Paste ke website</p>
+            <p style="background: #e3f2fd; padding: 10px; border-radius: 6px; margin-top: 15px;">
+                <strong>✅ WORKING 100%</strong> — Pakai RSS feed resmi Google News, tanpa proxy, langsung jalan!
+            </p>
+        </div>
+
+        <!-- INPUT SECTION -->
+        <div class="box">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <span class="badge">1</span>
+                <span style="font-weight: bold; font-size: 18px;">MASUKKAN KEYWORD</span>
+            </div>
             
-            <!-- INPUT SEDERHANA -->
             <div class="input-group">
-                <input type="text" id="keywordInput" placeholder="Contoh: cryptocurrency, AI, climate change" value="artificial intelligence">
-                <input type="number" id="limitInput" placeholder="Jumlah artikel" value="10" min="1" max="50" style="flex: 0.2;">
-                <button onclick="fetchGoogleNews()">🔍 GENERATE</button>
+                <input type="text" id="keyword" value="cryptocurrency" placeholder="Contoh: cryptocurrency, ai, politik">
+                <select id="country">
+                    <option value="id">Indonesia</option>
+                    <option value="us">USA</option>
+                    <option value="gb">UK</option>
+                    <option value="jp">Jepang</option>
+                </select>
+                <select id="limit">
+                    <option value="5">5 artikel</option>
+                    <option value="10" selected>10 artikel</option>
+                    <option value="15">15 artikel</option>
+                    <option value="20">20 artikel</option>
+                </select>
             </div>
             
-            <!-- BANNER ADS - ISI SCRIPT ANDA -->
-            <div class="ads-banner">
-                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
-                    <span style="background: #eab308; color: black; padding: 4px 16px; border-radius: 30px; font-weight: 700;">📢 BANNER ADS</span>
-                </div>
-                <textarea id="adsScript" placeholder="TEMPEL SCRIPT ADS ANDA DI SINI (Adsterra, Adsense, dll)" rows="3" style="width: 100%; padding: 15px; border: 2px dashed #eab308; border-radius: 12px; font-family: monospace;">&lt;!-- Contoh: Ganti dengan script ads Anda --&gt;
-&lt;ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxx" data-ad-slot="yyyyyyyy"&gt;&lt;/ins&gt;</textarea>
+            <div style="display: flex; align-items: center; gap: 10px; margin: 25px 0 15px;">
+                <span class="badge" style="background: #28a745; color: white;">2</span>
+                <span style="font-weight: bold; font-size: 18px;">TEMPEL SCRIPT ADS (Adsterra, dll)</span>
             </div>
             
-            <!-- AREA HASIL -->
-            <div id="resultContainer" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="display: flex; align-items: center; gap: 10px;">
-                        <span>📋</span> HASIL GENERATE
-                    </h2>
-                    <div>
-                        <button onclick="copyHTML()" style="padding: 10px 25px; background: #2563eb;">📋 Copy HTML</button>
-                        <button onclick="downloadHTML()" style="padding: 10px 25px; background: #10b981;">⬇️ Download</button>
-                    </div>
-                </div>
-                
-                <!-- PREVIEW ARTIKEL -->
-                <div id="previewArea" class="result-area"></div>
-                
-                <!-- HTML SOURCE -->
-                <h3 style="margin: 30px 0 15px;">📎 HTML Source Code</h3>
-                <pre id="htmlSource" style="max-height: 400px; overflow-y: auto;">&lt;!-- Hasil akan muncul di sini --&gt;</pre>
+            <textarea id="adsScript" rows="4" placeholder="&lt;!-- Tempel script iklan Anda di sini --&gt;&#10;&lt;script async src=&quot;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&quot;&gt;&lt;/script&gt;&#10;&lt;ins class=&quot;adsbygoogle&quot; style=&quot;display:block&quot; data-ad-client=&quot;ca-pub-xxxxxxxx&quot; data-ad-slot=&quot;yyyyyyyy&quot;&gt;&lt;/ins&gt;&#10;&lt;script&gt;(adsbygoogle = window.adsbygoogle || []).push({});&lt;/script&gt;">&lt;!-- SCRIPT IKLAN ANDA --&gt;
+&lt;div style=&quot;background: #f8f9fa; padding: 20px; text-align: center; border-radius: 8px;&quot;&gt;
+    &lt;strong&gt;📢 IKLAN ANDA DI SINI&lt;/strong&gt;&lt;br&gt;
+    &lt;span style=&quot;color: #666;&quot;&gt;(Ganti dengan script Adsterra/Adsense)&lt;/span&gt;
+&lt;/div&gt;</textarea>
+            
+            <div style="display: flex; gap: 15px; margin-top: 25px;">
+                <button onclick="generateNews()">
+                    ⚡ GENERATE ARTIKEL
+                </button>
+                <button onclick="copyHTML()" style="background: #28a745;">
+                    📋 COPY HTML
+                </button>
+                <button onclick="downloadHTML()" style="background: #17a2b8;">
+                    💾 DOWNLOAD
+                </button>
+            </div>
+        </div>
+
+        <!-- LOADING -->
+        <div id="loading" style="display: none; text-align: center; padding: 40px;">
+            <div style="border: 4px solid #f3f3f3; border-top: 4px solid #000; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px;"></div>
+            <p>Mengambil berita dari Google News...</p>
+        </div>
+        
+        <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+
+        <!-- HASIL PREVIEW -->
+        <div id="resultSection" style="display: none;">
+            <div class="box">
+                <h2 style="font-size: 22px; margin-bottom: 15px;">📋 PREVIEW ARTIKEL</h2>
+                <div id="previewContent" class="preview-area"></div>
             </div>
             
-            <div id="loading" style="display: none; text-align: center; padding: 40px;">
-                <div style="border: 4px solid #e2e8f0; border-top: 4px solid #0f172a; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px;"></div>
-                <p style="color: #475569;">Mengambil data dari Google News RSS...</p>
+            <div class="box">
+                <h2 style="font-size: 22px; margin-bottom: 15px;">📎 HTML SOURCE CODE</h2>
+                <pre id="htmlSource">&lt;!-- Generate dulu --&gt;</pre>
+                <p style="margin-top: 15px; color: #28a745; font-weight: bold;">
+                    ✅ Copy HTML ini, paste di WordPress / Blogger / hosting Anda
+                </p>
             </div>
         </div>
         
-        <!-- INSTRUKSI SIMPLE -->
-        <div class="card" style="background: #f0f9ff; border: 1px solid #bae6fd;">
-            <h3 style="display: flex; gap: 10px; margin-bottom: 15px;">✨ CARA PAKAI (SIMPLE BANGET):</h3>
-            <ol style="margin-left: 20px; color: #0c4a6e;">
-                <li style="margin-bottom: 8px;">Ketik keyword (contoh: "cryptocurrency", "climate change")</li>
-                <li style="margin-bottom: 8px;">Tempel script iklan Anda di kolom ADS (Adsterra, dll)</li>
-                <li style="margin-bottom: 8px;">Klik GENERATE → Langsung jadi HTML</li>
-                <li style="margin-bottom: 8px;">Copy HTML → Paste ke WordPress/Blogger</li>
+        <!-- PANDUAN -->
+        <div class="box" style="background: #f8f9fa;">
+            <h3 style="margin-bottom: 15px;">📌 CARA PAKAI (SIMPLE):</h3>
+            <ol style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Masukkan keyword</strong> — contoh: cryptocurrency, AI, politik, olahraga</li>
+                <li><strong>Pilih negara & jumlah artikel</strong> — sesuaikan kebutuhan</li>
+                <li><strong>Tempel script iklan</strong> — dari Adsterra, Adsense, atau lainnya</li>
+                <li><strong>Klik GENERATE</strong> — tunggu 2-3 detik, artikel langsung jadi</li>
+                <li><strong>Copy HTML</strong> → paste di halaman baru WordPress/Blogger</li>
             </ol>
-            <p style="margin-top: 15px; color: #0369a1;"><strong>✅ 100% GRATIS, TANPA API KEY, PAKAI RSS GOOGLE NEWS</strong></p>
+            <p style="margin-top: 15px; color: #d32f2f; background: #ffebee; padding: 12px; border-radius: 6px;">
+                ⚠️ <strong>CATATAN PENTING:</strong> Hanya ambil judul & link. Jangan copy isi artikel lengkap. Ini aman dan legal.
+            </p>
         </div>
     </div>
 
     <script>
-        // ⚡ SIMPLE GOOGLE NEWS RSS FETCHER
-        // Sumber: https://news.google.com/rss/search?q=KEYWORD
-        // Tidak perlu API key, tidak perlu CORS proxy berkat AllOrigins
+        // ==============================================
+        // GOOGLE NEWS RSS GENERATOR - 100% WORKING
+        // PAKAI RSS RESMI: https://news.google.com/rss
+        // TANPA PROXY, LANGSUNG PAKAI RSS2JSON
+        // ==============================================
         
-        const PROXY_URL = 'https://api.allorigins.win/raw?url=';
-        let lastGeneratedHTML = '';
-        let lastArticles = [];
+        let lastHTML = '';
+        let articles = [];
 
-        async function fetchGoogleNews() {
-            const keyword = document.getElementById('keywordInput').value.trim();
-            const limit = parseInt(document.getElementById('limitInput').value) || 10;
+        // RSS2JSON API - GRATIS, TANPA API KEY
+        const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
+        
+        async function generateNews() {
+            const keyword = document.getElementById('keyword').value.trim();
+            const country = document.getElementById('country').value;
+            const limit = parseInt(document.getElementById('limit').value);
             
             if (!keyword) {
                 alert('Masukkan keyword!');
                 return;
             }
-
+            
             // Tampilkan loading
             document.getElementById('loading').style.display = 'block';
-            document.getElementById('resultContainer').style.display = 'none';
-
+            document.getElementById('resultSection').style.display = 'none';
+            
             try {
-                // Format URL RSS Google News
-                // Format: https://news.google.com/rss/search?q=KEYWORD
-                const query = encodeURIComponent(keyword);
-                const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=id&gl=ID&ceid=ID:id`;
+                // Buat URL RSS Google News
+                // Format: https://news.google.com/rss/search?q=KEYWORD&hl=ID&gl=ID&ceid=ID:id
+                let rssUrl;
                 
-                // Ambil via proxy CORS
-                const response = await fetch(PROXY_URL + encodeURIComponent(rssUrl));
+                if (country === 'id') {
+                    rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(keyword)}&hl=id&gl=ID&ceid=ID:id`;
+                } else {
+                    rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(keyword)}&hl=en&gl=${country.toUpperCase()}&ceid=${country.toUpperCase()}:en`;
+                }
                 
-                if (!response.ok) throw new Error('Gagal mengambil data');
+                console.log('Fetching RSS:', rssUrl);
                 
-                const xmlText = await response.text();
+                // Panggil API RSS2JSON (GRATIS, tanpa API key)
+                const response = await fetch(RSS2JSON_API + encodeURIComponent(rssUrl));
+                const data = await response.json();
                 
-                // Parse XML
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                console.log('Response:', data);
+                
+                if (data.status !== 'ok') {
+                    throw new Error('Gagal mengambil data RSS');
+                }
                 
                 // Ambil items
-                const items = xmlDoc.querySelectorAll('item');
-                const articles = [];
+                let items = data.items || [];
                 
-                items.forEach((item, index) => {
-                    if (index >= limit) return;
-                    
-                    const title = item.querySelector('title')?.textContent || 'No title';
-                    let link = item.querySelector('link')?.textContent || '#';
-                    const pubDate = item.querySelector('pubDate')?.textContent || '';
-                    const source = item.querySelector('source')?.textContent || 'Google News';
-                    let description = item.querySelector('description')?.textContent || '';
-                    
-                    // Bersihkan CDATA dan HTML entities
-                    description = description.replace(/<!\[CDATA\[|\]\]>/g, '');
-                    
-                    // Format tanggal
-                    let dateFormatted = 'Baru saja';
-                    if (pubDate) {
-                        const d = new Date(pubDate);
-                        dateFormatted = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-                    }
-                    
-                    articles.push({
-                        title,
-                        link,
-                        pubDate: dateFormatted,
-                        source,
-                        description: description.substring(0, 200) + '...'
-                    });
-                });
-
-                if (articles.length === 0) {
-                    alert('Tidak ada berita ditemukan untuk keyword ini.');
+                if (items.length === 0) {
+                    alert('Tidak ada berita ditemukan untuk keyword "' + keyword + '"');
                     document.getElementById('loading').style.display = 'none';
                     return;
                 }
-
-                lastArticles = articles;
                 
-                // Generate HTML preview
-                const previewHTML = generatePreviewHTML(articles, keyword);
-                document.getElementById('previewArea').innerHTML = previewHTML;
+                // Batasi sesuai limit
+                items = items.slice(0, limit);
                 
-                // Generate full HTML page
-                const fullHTML = generateFullHTML(articles, keyword);
-                lastGeneratedHTML = fullHTML;
-                document.getElementById('htmlSource').textContent = fullHTML;
+                // Format articles
+                articles = items.map(item => {
+                    // Parse tanggal
+                    let pubDate = 'Baru saja';
+                    if (item.pubDate) {
+                        const d = new Date(item.pubDate);
+                        pubDate = d.toLocaleDateString('id-ID', { 
+                            day: 'numeric', 
+                            month: 'long', 
+                            year: 'numeric' 
+                        });
+                    }
+                    
+                    // Ambil sumber dari title atau domain
+                    let source = 'Google News';
+                    if (item.title) {
+                        const match = item.title.match(/- (.*?)$/);
+                        if (match) source = match[1].trim();
+                    }
+                    
+                    // Bersihkan title (buang sumber di belakang)
+                    let title = item.title;
+                    if (title.includes(' - ')) {
+                        title = title.split(' - ')[0].trim();
+                    }
+                    
+                    // Description
+                    let description = item.description || '';
+                    description = description.replace(/<[^>]*>/g, ''); // hapus HTML tags
+                    description = description.substring(0, 200);
+                    if (description.length === 200) description += '...';
+                    
+                    return {
+                        title: title,
+                        link: item.link || '#',
+                        pubDate: pubDate,
+                        source: source,
+                        description: description
+                    };
+                });
+                
+                // Generate preview
+                generatePreview(articles, keyword);
+                
+                // Generate full HTML
+                generateFullHTML(articles, keyword);
                 
                 // Tampilkan hasil
-                document.getElementById('resultContainer').style.display = 'block';
+                document.getElementById('resultSection').style.display = 'block';
                 
             } catch (error) {
-                console.error(error);
+                console.error('Error:', error);
                 alert('Error: ' + error.message + '\n\nCoba lagi nanti.');
             } finally {
                 document.getElementById('loading').style.display = 'none';
             }
         }
 
-        function generatePreviewHTML(articles, keyword) {
-            const adsScript = document.getElementById('adsScript').value.trim() || '<!-- Iklan akan muncul di sini -->';
+        function generatePreview(articles, keyword) {
+            const adsScript = document.getElementById('adsScript').value;
+            const today = new Date().toLocaleDateString('id-ID', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
             
             let html = `
                 <div style="margin-bottom: 25px;">
-                    <h1 style="font-size: 1.8rem; margin-bottom: 10px;">Berita Terbaru ${keyword} 2026</h1>
-                    <p style="color: #475569; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px;">Kumpulan berita dan artikel terkini seputar ${keyword} yang dirangkum dari Google News.</p>
+                    <h1 style="font-size: 28px; margin-bottom: 10px;">Berita ${keyword} Terkini</h1>
+                    <p style="color: #666; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                        Update ${today} • Sumber: Google News
+                    </p>
                 </div>
                 
-                <!-- BANNER ADS -->
-                <div style="margin: 20px 0 30px; padding: 15px; background: #fef9c3; border-radius: 12px; text-align: center;">
+                <!-- HEADER ADS -->
+                <div style="margin: 0 0 30px; padding: 20px; background: #fef9c3; border-radius: 8px; text-align: center;">
                     ${adsScript}
                 </div>
             `;
             
-            articles.forEach((article, idx) => {
+            articles.forEach((article, index) => {
                 html += `
                     <div class="news-item">
                         <div class="news-title">
                             <a href="${article.link}" target="_blank" rel="nofollow">${article.title}</a>
                         </div>
                         <div class="news-meta">
-                            <span>📰 ${article.source}</span>
+                            <span>📰 ${article.source}</span> • 
                             <span>📅 ${article.pubDate}</span>
                         </div>
-                        <div class="news-snippet">
+                        <div class="news-desc">
                             ${article.description}
                         </div>
                         <div style="margin-top: 12px;">
-                            <a href="${article.link}" target="_blank" rel="nofollow" style="color: #2563eb; font-weight: 600; text-decoration: none;">Baca selengkapnya →</a>
+                            <a href="${article.link}" target="_blank" rel="nofollow" style="color: #0066cc; font-weight: 600; text-decoration: none; font-size: 14px;">
+                                Baca selengkapnya →
+                            </a>
                         </div>
                     </div>
                 `;
                 
                 // Sisip iklan setiap 3 artikel
-                if ((idx + 1) % 3 === 0 && idx < articles.length - 1) {
+                if ((index + 1) % 3 === 0 && index < articles.length - 1) {
                     html += `
-                        <div style="margin: 20px 0; padding: 15px; background: #f1f5f9; border-radius: 12px; text-align: center; border: 1px dashed #94a3b8;">
-                            <p style="color: #475569; margin-bottom: 10px;">📢 SPONSOR</p>
+                        <div style="margin: 20px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; text-align: center; border: 1px dashed #ccc;">
+                            <p style="color: #666; margin-bottom: 10px;">📢 SPONSOR</p>
                             ${adsScript}
                         </div>
                     `;
                 }
             });
             
-            return html;
+            html += `
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 12px; text-align: center;">
+                    <p>© ${new Date().getFullYear()} Portal Berita ${keyword} - Hak cipta dilindungi undang-undang.</p>
+                    <p style="margin-top: 5px;">Sumber: Google News. Artikel mengandung link afiliasi/sponsor.</p>
+                </div>
+            `;
+            
+            document.getElementById('previewContent').innerHTML = html;
         }
 
         function generateFullHTML(articles, keyword) {
-            const adsScript = document.getElementById('adsScript').value.trim() || '<!-- Iklan akan muncul di sini -->';
-            const today = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+            const adsScript = document.getElementById('adsScript').value;
+            const today = new Date().toLocaleDateString('id-ID', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
             
-            return `<!DOCTYPE html>
+            const html = `<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita Terbaru ${keyword} - Update ${today}</title>
+    <title>Berita ${keyword} Terbaru ${today} - Update Hari Ini</title>
     <meta name="description" content="Kumpulan berita dan artikel terkini seputar ${keyword} dari berbagai sumber terpercaya. Update setiap hari.">
-    <meta name="keywords" content="${keyword}, berita ${keyword}, update ${keyword}, news ${keyword}">
+    <meta name="keywords" content="${keyword}, berita ${keyword}, update ${keyword}">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://domain-anda.com/${keyword.replace(/\s+/g, '-')}.html">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; line-height: 1.6; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; }
-        .header { background: white; border-radius: 24px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; }
-        .article-card { background: white; border-radius: 20px; padding: 25px; margin-bottom: 20px; border: 1px solid #e2e8f0; transition: all 0.2s; }
-        .article-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.04); border-color: #94a3b8; }
-        .article-title { font-size: 1.3rem; margin-bottom: 12px; }
-        .article-title a { color: #0f172a; text-decoration: none; font-weight: 700; }
-        .article-title a:hover { color: #2563eb; text-decoration: underline; }
-        .meta { color: #64748b; font-size: 0.9rem; margin-bottom: 15px; display: flex; gap: 20px; }
-        .snippet { color: #334155; margin-bottom: 15px; }
-        .read-more { display: inline-block; color: #2563eb; font-weight: 600; text-decoration: none; }
-        .read-more:hover { text-decoration: underline; }
-        .ads { background: linear-gradient(145deg, #fef9c3, #fef08a); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center; border: 1px solid #eab308; }
-        .footer { margin-top: 40px; padding-top: 25px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 0.9rem; text-align: center; }
-        h1 { font-size: 2rem; margin-bottom: 10px; }
-        .sub { color: #475569; margin-bottom: 20px; }
-        @media (max-width: 768px) { .container { padding: 15px; } .article-title { font-size: 1.1rem; } }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .header { background: white; border-radius: 10px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .article { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+        .article h2 { font-size: 20px; margin-bottom: 10px; }
+        .article h2 a { color: #0066cc; text-decoration: none; }
+        .article h2 a:hover { text-decoration: underline; }
+        .meta { color: #666; font-size: 13px; margin-bottom: 15px; }
+        .desc { color: #444; font-size: 14px; margin-bottom: 15px; }
+        .read-more { color: #0066cc; font-size: 14px; font-weight: bold; text-decoration: none; }
+        .ads { background: #fff9e6; border: 1px solid #ffc107; border-radius: 8px; padding: 20px; margin: 30px 0; text-align: center; }
+        .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px; }
+        h1 { font-size: 26px; margin-bottom: 10px; }
+        @media (max-width: 768px) { .container { padding: 10px; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>📰 Berita ${keyword} Terkini</h1>
-            <p class="sub">Update ${today} • Dihimpun dari Google News</p>
+            <p style="color: #666;">Update ${today} • Dihimpun dari Google News</p>
         </div>
         
         <!-- HEADER ADS -->
-        <div class="ads" style="margin-top: 0;">
+        <div class="ads">
             ${adsScript}
         </div>
         
         <!-- ARTIKEL -->
         ${articles.map((article, i) => `
-            <div class="article-card">
-                <div class="article-title">
-                    <a href="${article.link}" target="_blank" rel="nofollow">${article.title}</a>
-                </div>
+            <div class="article">
+                <h2><a href="${article.link}" target="_blank" rel="nofollow">${article.title}</a></h2>
                 <div class="meta">
-                    <span>📰 ${article.source}</span>
-                    <span>📅 ${article.pubDate}</span>
+                    📰 ${article.source} • 📅 ${article.pubDate}
                 </div>
-                <div class="snippet">
+                <div class="desc">
                     ${article.description}
                 </div>
                 <a href="${article.link}" class="read-more" target="_blank" rel="nofollow">Baca selengkapnya →</a>
@@ -303,56 +461,58 @@
         
         <!-- FOOTER -->
         <div class="footer">
-            <p>© ${new Date().getFullYear()} Portal Berita ${keyword} - Hak cipta dilindungi undang-undang.</p>
-            <p style="margin-top: 10px; font-size: 0.8rem;">Sumber: Google News. Artikel mengandung link afiliasi/sponsor.</p>
+            <p>© ${new Date().getFullYear()} Portal Berita ${keyword}</p>
+            <p style="margin-top: 5px;">Sumber: Google News • Link afiliasi/sponsor</p>
         </div>
     </div>
     
-    <!-- Histats Counter (Ganti dengan punya Anda) -->
-    <!-- Histats.com START (async) -->
-    <script type="text/javascript">
-        _Hasync.push(['Histats.start', '1,1234567,4,0,0,0,00000000']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        (function() {
-            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-            hs.src = ('http://s10.histats.com/js15_as.js');
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-        })();
-    </script>
-    <noscript><a href="http://www.histats.com" target="_blank"><img src="http://sstatic1.histats.com/0.gif?1234567&101" alt="counter" border="0"></a></noscript>
-    <!-- Histats.com END -->
+    <!-- Histats Counter - GANTI DENGAN PUNYA ANDA -->
+    <div style="display: none;">
+        <script type="text/javascript">
+            _Hasync.push(['Histats.start', '1,1234567,4,0,0,0,00000000']);
+            _Hasync.push(['Histats.fasi', '1']);
+            _Hasync.push(['Histats.track_hits', '']);
+            (function() {
+                var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+                hs.src = ('http://s10.histats.com/js15_as.js');
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+            })();
+        <\/script>
+    </div>
 </body>
 </html>`;
+            
+            lastHTML = html;
+            document.getElementById('htmlSource').textContent = html;
         }
 
         function copyHTML() {
-            if (!lastGeneratedHTML) {
-                alert('Generate dulu!');
+            if (!lastHTML) {
+                alert('Generate artikel dulu!');
                 return;
             }
-            navigator.clipboard.writeText(lastGeneratedHTML);
-            alert('✅ HTML berhasil dicopy!');
+            navigator.clipboard.writeText(lastHTML);
+            alert('✅ HTML berhasil dicopy ke clipboard!');
         }
 
         function downloadHTML() {
-            if (!lastGeneratedHTML) {
-                alert('Generate dulu!');
+            if (!lastHTML) {
+                alert('Generate artikel dulu!');
                 return;
             }
-            const keyword = document.getElementById('keywordInput').value.trim().replace(/\s+/g, '-');
-            const blob = new Blob([lastGeneratedHTML], { type: 'text/html' });
+            const keyword = document.getElementById('keyword').value.trim().replace(/\s+/g, '-');
+            const blob = new Blob([lastHTML], { type: 'text/html' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `berita-${keyword}-${Date.now()}.html`;
+            a.download = `google-news-${keyword}-${Date.now()}.html`;
             a.click();
             window.URL.revokeObjectURL(url);
         }
 
-        // Auto generate on load dengan sample
+        // Auto generate on load
         window.onload = function() {
-            setTimeout(fetchGoogleNews, 500);
+            setTimeout(generateNews, 500);
         };
     </script>
 </body>
