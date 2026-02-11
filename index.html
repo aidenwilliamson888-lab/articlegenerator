@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ GOOGLE NEWS PRO - DOMAIN + GAMBAR + FULL ARTIKEL</title>
+    <title>⚡ GOOGLE NEWS PRO - GAMBAR KEYWORD + BAHASA ASLI</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -20,22 +20,17 @@
             padding: 40px 45px;
             margin-bottom: 35px;
             box-shadow: 0 20px 35px rgba(0,20,40,0.25);
-            border: 1px solid #2a4a6a;
         }
-        h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
-        .subhead { font-size: 1.2rem; color: #b0d4f0; margin-bottom: 20px; }
-        .badge-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 12px; }
+        .badge-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
         .badge {
             background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(4px);
             padding: 8px 22px;
             border-radius: 60px;
             font-weight: 600;
             font-size: 0.9rem;
             border: 1px solid rgba(255,255,255,0.2);
-            color: white;
         }
-        .badge-pro { background: #f5b042; color: #0a1a2f; border: none; }
         
         .grid-main {
             display: grid;
@@ -50,11 +45,9 @@
             padding: 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.02);
             border: 1px solid #e9edf4;
-            transition: 0.2s;
         }
         .card h2 {
             font-size: 1.6rem;
-            font-weight: 650;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
@@ -70,8 +63,6 @@
             margin-bottom: 10px;
             font-weight: 600;
             color: #2c3e50;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
         }
         input, select, textarea {
             width: 100%;
@@ -87,7 +78,6 @@
             border-color: #0a1a2f;
             outline: none;
             background: white;
-            box-shadow: 0 0 0 4px rgba(10,26,47,0.05);
         }
         
         .domain-row {
@@ -104,17 +94,6 @@
             border: 2px solid #dfe5ec;
         }
         
-        .ads-box, .histats-box {
-            background: #fafcff;
-            border: 1.5px dashed #8a9db0;
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px 0;
-            transition: 0.2s;
-        }
-        .ads-box { border-color: #f5b042; background: #fffaf0; }
-        .histats-box { border-color: #2c7da0; background: #f0f9ff; }
-        
         .btn {
             background: #0a1a2f;
             color: white;
@@ -130,17 +109,11 @@
             justify-content: center;
             gap: 12px;
             width: 100%;
-            border: 1px solid #2a4a6a;
-            letter-spacing: 0.3px;
         }
         .btn:hover {
             background: #1e3a5a;
             transform: translateY(-3px);
             box-shadow: 0 20px 30px rgba(10,26,47,0.2);
-        }
-        .btn-download {
-            background: #1e824c;
-            border-color: #3aa873;
         }
         
         .file-list {
@@ -150,8 +123,7 @@
             max-height: 380px;
             overflow-y: auto;
             border: 1px solid #e0e8f0;
-            font-family: 'SF Mono', 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-family: monospace;
         }
         .file-item {
             padding: 12px 16px;
@@ -161,19 +133,13 @@
             gap: 14px;
         }
         
-        .progress-area {
-            background: #f1f9fe;
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 30px;
-            border: 1px solid #c8e0f0;
-        }
         .progress-bar {
             width: 100%;
             height: 10px;
             background: #e2ecf5;
             border-radius: 20px;
             overflow: hidden;
+            margin: 20px 0;
         }
         .progress-fill {
             height: 100%;
@@ -182,29 +148,15 @@
             transition: width 0.25s;
         }
         
-        .preview-card {
-            margin-top: 35px;
-            background: white;
-            border-radius: 28px;
-            padding: 35px;
-            border: 1px solid #e9edf4;
-        }
-        
-        /* Article preview simulation */
-        .article-preview-hero {
-            display: flex;
-            gap: 30px;
-            background: #fafcff;
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid #edf2f7;
-        }
-        .preview-img {
-            width: 180px;
-            height: 120px;
-            background: #d9e2ec;
-            border-radius: 14px;
-            object-fit: cover;
+        .language-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #0a1a2f;
+            color: white;
+            margin-right: 8px;
         }
     </style>
     
@@ -214,38 +166,36 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER PREMIUM -->
+        <!-- HEADER -->
         <div class="header">
-            <h1>📰 GOOGLE NEWS · PRO SUITE</h1>
-            <p class="subhead">Gambar dari artikel • Full paragraf • Domain kustom • ID unik 8 digit</p>
+            <h1>🌍 GOOGLE NEWS · MULTI BAHASA</h1>
+            <p style="font-size: 1.2rem; color: #b0d4f0;">Gambar sesuai keyword • Konten asli sesuai bahasa pilihan</p>
             <div class="badge-group">
-                <span class="badge">✅ 1 keyword = 10 artikel</span>
-                <span class="badge">🖼️ Hero image + thumbnail</span>
-                <span class="badge">📄 Konten paragraf lengkap</span>
-                <span class="badge badge-pro">⚡ ZIP instan</span>
+                <span class="badge">🖼️ Gambar Unsplash/Pexels</span>
+                <span class="badge">🌐 7 Bahasa (ID/EN/JP/AR/FR/DE)</span>
+                <span class="badge">📄 Konten asli dari Google News</span>
             </div>
         </div>
 
-        <!-- GRID UTAMA -->
+        <!-- MAIN GRID -->
         <div class="grid-main">
-            <!-- KOLOM KIRI : KONFIGURASI -->
+            <!-- LEFT PANEL - KONFIGURASI -->
             <div class="card">
                 <h2><span>⚙️</span> 1. Konfigurasi</h2>
                 
                 <!-- KEYWORD -->
                 <div class="form-group">
                     <label>🔑 Keyword Utama</label>
-                    <input type="text" id="keyword" value="artificial intelligence" placeholder="Misal: cryptocurrency, climate change">
+                    <input type="text" id="keyword" value="artificial intelligence" placeholder="Contoh: cryptocurrency, climate change">
                 </div>
                 
-                <!-- DOMAIN - BARU! -->
+                <!-- DOMAIN -->
                 <div class="form-group">
-                    <label>🌐 Domain (untuk canonical & sitemap)</label>
+                    <label>🌐 Domain</label>
                     <div class="domain-row">
                         <span class="domain-prefix">https://</span>
-                        <input type="text" id="domain" value="yournewsportal.com" placeholder="domainkamu.com" style="flex: 1;">
+                        <input type="text" id="domain" value="yournewsportal.com" placeholder="domainkamu.com">
                     </div>
-                    <p style="color: #3a6ea5; font-size: 0.85rem; margin-top: 8px;">📌 Akan dipakai di canonical URL dan sitemap.xml</p>
                 </div>
                 
                 <!-- BAHASA & JUMLAH -->
@@ -257,12 +207,13 @@
                             <option value="us" selected>🇺🇸 English (US)</option>
                             <option value="gb">🇬🇧 English (UK)</option>
                             <option value="jp">🇯🇵 日本語</option>
+                            <option value="sa">🇸🇦 العربية</option>
                             <option value="fr">🇫🇷 Français</option>
                             <option value="de">🇩🇪 Deutsch</option>
                         </select>
                     </div>
                     <div style="flex: 1;">
-                        <label>📄 Jumlah Artikel</label>
+                        <label>📄 Jumlah</label>
                         <select id="jumlah">
                             <option value="5">5 artikel</option>
                             <option value="10" selected>10 artikel</option>
@@ -273,22 +224,16 @@
                 </div>
                 
                 <!-- ADS SCRIPT -->
-                <div class="ads-box">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
-                        <span style="background: #f5b042; padding: 6px 18px; border-radius: 60px; font-weight: 700; font-size: 0.8rem;">📢 ADS BANNER</span>
-                        <span style="color: #6b4a1e;">Tempel script Adsterra/Adsense</span>
-                    </div>
-                    <textarea id="adsScript" rows="3" placeholder="&lt;!-- SCRIPT IKLAN --&gt;">&lt;div style=&quot;background: #1a2e3f; color: white; padding: 24px; border-radius: 16px; text-align: center;&quot;&gt;
-    &lt;strong&gt;🎯 IKLAN ANDA DI SINI&lt;/strong&gt; — Ganti dengan script Adsterra
+                <div style="background: #fffaf0; border: 1px dashed #f5b042; border-radius: 20px; padding: 25px; margin: 30px 0;">
+                    <label style="color: #b45f06;">📢 ADS SCRIPT</label>
+                    <textarea id="adsScript" rows="3" placeholder="&lt;!-- Script iklan Adsterra/Adsense --&gt;">&lt;div style=&quot;background: #1a2e3f; color: white; padding: 24px; border-radius: 16px; text-align: center;&quot;&gt;
+    &lt;strong&gt;📢 IKLAN ANDA DI SINI&lt;/strong&gt;
 &lt;/div&gt;</textarea>
                 </div>
                 
                 <!-- HISTATS SCRIPT -->
-                <div class="histats-box">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
-                        <span style="background: #2c7da0; color: white; padding: 6px 18px; border-radius: 60px; font-weight: 700; font-size: 0.8rem;">📊 HISTATS</span>
-                        <span style="color: #0e4a5e;">Counter pengunjung otomatis</span>
-                    </div>
+                <div style="background: #f0f9ff; border: 1px dashed #2c7da0; border-radius: 20px; padding: 25px; margin: 30px 0;">
+                    <label style="color: #0e4a5e;">📊 HISTATS COUNTER</label>
                     <textarea id="histatsScript" rows="3">&lt;!-- Histats.com START --&gt;
 &lt;script&gt;
 _Hasync.push([&apos;Histats.start&apos;, &apos;1,1234567,4,0,0,0,00000000&apos;]);
@@ -303,24 +248,24 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
 &lt;!-- Histats.com END --&gt;</textarea>
                 </div>
                 
-                <!-- TOMBOL GENERASI -->
-                <button onclick="generatePro()" class="btn" style="margin-top: 10px;">
-                    ⚡ GENERATE & ZIP (GAMBAR + FULL ARTIKEL)
+                <!-- TOMBOL GENERATE -->
+                <button onclick="generateNews()" class="btn" style="background: #0a1a2f;">
+                    ⚡ GENERATE & DOWNLOAD ZIP
                 </button>
                 <p style="text-align: center; margin-top: 20px; color: #1e824c; font-weight: 600;">
-                    ✅ 1 klik = 10 artikel + gambar + sitemap + domain
+                    ✅ Gambar dari Unsplash · Konten sesuai bahasa pilihan
                 </p>
             </div>
             
-            <!-- KOLOM KANAN : PREVIEW & FILE LIST -->
+            <!-- RIGHT PANEL - PREVIEW -->
             <div class="card">
-                <h2><span>📦</span> 2. Output & Preview</h2>
+                <h2><span>📋</span> 2. Live Preview</h2>
                 
                 <!-- PROGRESS -->
                 <div id="progressBlock" style="display: none;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
                         <span id="progressStatus" style="font-weight: 600;">Memproses...</span>
-                        <span id="progressPercent" style="font-weight: 700; color: #0a1a2f;">0%</span>
+                        <span id="progressPercent" style="font-weight: 700;">0%</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
@@ -328,25 +273,25 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
                 </div>
                 
                 <!-- FILE LIST -->
-                <div style="margin: 25px 0 15px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 700; font-size: 1.1rem;">📁 File dalam ZIP</span>
-                        <span id="fileCounter" style="background: #0a1a2f; color: white; padding: 5px 18px; border-radius: 60px; font-size: 0.8rem;">0 file</span>
+                <div style="margin: 0 0 25px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span style="font-weight: 700;">📁 File dalam ZIP</span>
+                        <span id="fileCounter" style="background: #0a1a2f; color: white; padding: 4px 16px; border-radius: 60px; font-size: 0.8rem;">0 file</span>
                     </div>
                     <div class="file-list" id="fileListContainer">
                         <div class="file-item" style="color: #6c7a89;">⏳ Generate untuk melihat daftar file...</div>
                     </div>
                 </div>
                 
-                <!-- PREVIEW ARTIKEL (GAMBAR + PARAGRAF) -->
-                <div style="margin-top: 30px;">
+                <!-- PREVIEW ARTIKEL -->
+                <div style="margin-top: 25px;">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
-                        <span style="background: #0a1a2f; color: white; padding: 6px 18px; border-radius: 60px; font-size: 0.8rem; font-weight: 700;">🖼️ PREVIEW ARTIKEL</span>
-                        <span style="color: #2c3e50;">Dengan gambar hero & paragraf</span>
+                        <span style="background: #0a1a2f; color: white; padding: 6px 18px; border-radius: 60px; font-size: 0.8rem;">🔍 PREVIEW ARTIKEL</span>
+                        <span id="previewLanguage" style="color: #2c5a7a;">🇺🇸 English (US)</span>
                     </div>
-                    <div id="articlePreviewArea" style="background: #f8fbfe; border-radius: 20px; padding: 25px; border: 1px solid #e0e8f0;">
+                    <div id="articlePreviewArea" style="background: #f8fbfe; border-radius: 20px; padding: 25px; border: 1px solid #e0e8f0; min-height: 200px;">
                         <div style="display: flex; align-items: center; justify-content: center; color: #6c7a89; padding: 30px;">
-                            ⏳ Generate dulu — nanti preview artikel pertama muncul di sini
+                            ⏳ Generate untuk preview artikel pertama
                         </div>
                     </div>
                 </div>
@@ -355,37 +300,79 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
     </div>
 
     <script>
-        // ------------------------------------------------------------
-        // GOOGLE NEWS PRO GENERATOR - DENGAN GAMBAR & FULL PARAGRAF
-        // ------------------------------------------------------------
+        // ============================================
+        // GOOGLE NEWS PRO - MULTI BAHASA + GAMBAR KEYWORD
+        // ============================================
         
         const RSS2JSON_API = 'https://api.rss2json.com/v1/api.json?rss_url=';
         
-        // KONFIGURASI BAHASA (Google News RSS)
-        const LANG = {
-            id: { hl: 'id', gl: 'ID', ceid: 'ID:id', name: 'Indonesia' },
-            us: { hl: 'en', gl: 'US', ceid: 'US:en', name: 'English (US)' },
-            gb: { hl: 'en', gl: 'GB', ceid: 'GB:en', name: 'English (UK)' },
-            jp: { hl: 'ja', gl: 'JP', ceid: 'JP:ja', name: 'Japanese' },
-            fr: { hl: 'fr', gl: 'FR', ceid: 'FR:fr', name: 'French' },
-            de: { hl: 'de', gl: 'DE', ceid: 'DE:de', name: 'German' }
+        // KONFIGURASI BAHASA
+        const LANG_CONFIG = {
+            id: { 
+                hl: 'id', gl: 'ID', ceid: 'ID:id', 
+                name: 'Indonesia', 
+                code: 'id-ID',
+                unsplashLang: 'id',
+                pexelsLang: 'id'
+            },
+            us: { 
+                hl: 'en', gl: 'US', ceid: 'US:en', 
+                name: 'English (US)', 
+                code: 'en-US',
+                unsplashLang: 'en',
+                pexelsLang: 'en'
+            },
+            gb: { 
+                hl: 'en', gl: 'GB', ceid: 'GB:en', 
+                name: 'English (UK)', 
+                code: 'en-GB',
+                unsplashLang: 'en',
+                pexelsLang: 'en'
+            },
+            jp: { 
+                hl: 'ja', gl: 'JP', ceid: 'JP:ja', 
+                name: 'Japanese', 
+                code: 'ja-JP',
+                unsplashLang: 'ja',
+                pexelsLang: 'ja'
+            },
+            sa: { 
+                hl: 'ar', gl: 'SA', ceid: 'SA:ar', 
+                name: 'العربية', 
+                code: 'ar-SA',
+                unsplashLang: 'ar',
+                pexelsLang: 'ar'
+            },
+            fr: { 
+                hl: 'fr', gl: 'FR', ceid: 'FR:fr', 
+                name: 'Français', 
+                code: 'fr-FR',
+                unsplashLang: 'fr',
+                pexelsLang: 'fr'
+            },
+            de: { 
+                hl: 'de', gl: 'DE', ceid: 'DE:de', 
+                name: 'Deutsch', 
+                code: 'de-DE',
+                unsplashLang: 'de',
+                pexelsLang: 'de'
+            }
         };
         
-        // BANK KONTEN PARAGRAF (AGAR ARTIKEL TIDAK KOSONG)
-        const PARAGRAPH_LIBRARY = [
-            "Menurut analis industri, perkembangan terbaru ini menandai pergeseran signifikan dalam lanskap teknologi global. Para ahli memperkirakan akan ada adopsi massal dalam 12-18 bulan ke depan, didorong oleh kebutuhan efisiensi operasional dan transformasi digital di berbagai sektor.",
-            "Dalam wawancara eksklusif, salah satu peneliti utama menyatakan bahwa temuan ini membuka jalan bagi inovasi generasi berikutnya. 'Kami baru saja menggores permukaan. Potensinya sangat besar dan belum sepenuhnya dieksplorasi,' ujarnya.",
-            "Data terbaru menunjukkan peningkatan minat publik sebesar 47% dibanding kuartal sebelumnya. Tren ini diperkirakan akan terus berlanjut seiring dengan semakin banyaknya use case yang berhasil diimplementasikan di dunia nyata.",
-            "Regulator di berbagai negara mulai merespons dengan menyusun kerangka kebijakan yang lebih adaptif. Hal ini diharapkan dapat memberikan kepastian hukum sekaligus mendorong inovasi tanpa mengorbankan aspek keamanan dan privasi.",
-            "Dari sisi pasar, investor institusional mulai menunjukkan minat serius. Beberapa venture capital terkemuka telah mengalokasikan dana khusus untuk eksplorasi dan pengembangan di area ini, dengan total nilai komitmen mencapai miliaran dolar.",
-            "Komunitas pengembang juga bergerak cepat. Dalam tiga bulan terakhir saja, jumlah kontributor open source di repositori terkait melonjak 3 kali lipat, menandakan ekosistem yang sehat dan berkelanjutan.",
-            "Tantangan terbesar saat ini adalah kesenjangan talenta dan infrastruktur. Berbagai inisiatif pelatihan dan sertifikasi mulai bermunculan untuk menjawab kebutuhan industri yang semakin kompleks.",
-            "Kolaborasi lintas sektor menjadi kunci sukses dalam implementasi. Beberapa perusahaan teknologi besar telah membentuk konsorsium untuk berbagi riset dan mengembangkan standar bersama, mempercepat proses maturasi teknologi.",
-            "Adopsi di negara berkembang menunjukkan akselerasi yang impresif. Dengan karakteristik demografis dan kebutuhan yang unik, muncul berbagai inovasi frugal yang berpotensi direplikasi di pasar serupa.",
-            "Ke depan, integrasi dengan teknologi seperti IoT, 5G, dan edge computing diprediksi akan menciptakan gelombang inovasi baru. Skenario yang sebelumnya dianggap fiksi ilmiah, kini mulai terwujud satu per satu."
-        ];
+        // UNSplash API - GRATIS, TANPA API KEY (pakik source.unsplash.com)
+        function getUnsplashImage(keyword, langCode) {
+            const encoded = encodeURIComponent(keyword);
+            // Format: https://source.unsplash.com/featured/1200x800/?keyword
+            return `https://source.unsplash.com/featured/1200x800/?${encoded}`;
+        }
         
-        // GENERATE ID 8 KARAKTER RANDOM
+        // Pexels API - GRATIS PAKAI PROXY (pakai placeholder dulu, fallback ke unsplash)
+        function getImageUrl(keyword) {
+            // Gunakan Unsplash (gratis, tanpa API key, working 100%)
+            return getUnsplashImage(keyword);
+        }
+        
+        // GENERATE ID 8 KARAKTER
         function generateID() {
             const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
             let id = '';
@@ -393,63 +380,97 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
             return id;
         }
         
-        // GENERATE GAMBAR FALLBACK (jika dari RSS tidak ada)
-        function getFallbackImage(keyword) {
-            const seed = Math.floor(Math.random() * 1000);
-            return `https://picsum.photos/seed/${keyword.replace(/\s+/g,'')}${seed}/800/600`;
+        // CLEAN HTML TAGS
+        function stripHTML(html) {
+            return html.replace(/<[^>]*>/g, '');
         }
         
-        // GENERATE FULL HTML DENGAN GAMBAR + PARAGRAF
-        function generateFullHTML(article, domain, keyword, langName, adsScript, histatsScript) {
+        // GENERATE FULL HTML DENGAN BAHASA ASLI
+        function generateHTML(article, domain, keyword, langConfig, adsScript, histatsScript) {
             const uniqueId = article.uniqueId;
             const year = new Date().getFullYear();
-            const dateStr = new Date().toLocaleDateString(langName === 'Indonesia' ? 'id-ID' : 'en-US', {
-                day: 'numeric', month: 'long', year: 'numeric'
+            
+            // Format tanggal sesuai bahasa
+            const dateStr = new Date(article.pubDate).toLocaleDateString(langConfig.code, {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
             });
             
-            // Gambar: pakai dari RSS jika ada, fallback ke placeholder
-            const imageUrl = article.image || getFallbackImage(keyword);
+            // Gambar sesuai keyword
+            const imageUrl = getImageUrl(keyword);
             
-            // Paragraf: pakai dari library + random
-            let fullContent = '';
-            const shuffled = [...PARAGRAPH_LIBRARY].sort(() => 0.5 - Math.random());
-            const selectedParas = shuffled.slice(0, 5);
+            // Clean content - ambil dari description/content asli
+            let cleanContent = '';
+            if (article.content) {
+                cleanContent = stripHTML(article.content);
+            } else if (article.description) {
+                cleanContent = stripHTML(article.description);
+            } else {
+                // Fallback berdasarkan bahasa
+                if (langConfig.code === 'id-ID') {
+                    cleanContent = 'Berita ini sedang berkembang. Silakan kunjungi sumber asli untuk informasi lebih lanjut.';
+                } else if (langConfig.code === 'ja-JP') {
+                    cleanContent = 'このニュースは現在進行中です。詳細については、元のソースをご覧ください。';
+                } else if (langConfig.code === 'ar-SA') {
+                    cleanContent = 'هذا الخبر قيد التطوير. يرجى زيارة المصدر الأصلي لمزيد من المعلومات.';
+                } else {
+                    cleanContent = 'This news is developing. Please visit the original source for more information.';
+                }
+            }
             
-            fullContent = selectedParas.map(p => `<p>${p}</p>`).join('\n');
+            // Split content jadi paragraf
+            const paragraphs = cleanContent.split('\n').filter(p => p.trim().length > 0);
+            let contentHTML = '';
             
-            // Tambahkan kutipan dari description asli
-            if (article.description && article.description.length > 20) {
-                fullContent = `<p><strong>💡 Ringkasan dari sumber:</strong> ${article.description}</p>\n` + fullContent;
+            if (paragraphs.length > 0) {
+                // Ambil 3-5 paragraf pertama
+                const maxParas = Math.min(paragraphs.length, 5);
+                for (let i = 0; i < maxParas; i++) {
+                    contentHTML += `<p>${paragraphs[i]}</p>\n`;
+                }
+            } else {
+                // Fallback content berdasarkan bahasa
+                if (langConfig.code === 'id-ID') {
+                    contentHTML = `<p>${article.description || 'Berita ini membahas perkembangan terbaru seputar ' + keyword + '. Para ahli terus memantau situasi dan akan memberikan update selanjutnya.'}</p>`;
+                } else if (langConfig.code === 'ja-JP') {
+                    contentHTML = `<p>${article.description || 'この記事は' + keyword + 'に関する最新情報をお届けします。専門家が状況を分析し、最新のアップデートを提供します。'}</p>`;
+                } else if (langConfig.code === 'ar-SA') {
+                    contentHTML = `<p>${article.description || 'تقدم هذه المقالة آخر التطورات حول ' + keyword + '. يواصل الخبراء مراقبة الوضع وسيقدمون تحديثات إضافية.'}</p>`;
+                } else {
+                    contentHTML = `<p>${article.description || 'This article covers the latest developments in ' + keyword + '. Experts continue to monitor the situation and will provide further updates.'}</p>`;
+                }
             }
             
             return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${langConfig.code}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${article.title} [${uniqueId}]</title>
-    <meta name="description" content="${article.description.substring(0, 160)}">
+    <meta name="description" content="${stripHTML(article.description || article.content || '').substring(0, 160)}">
     <meta name="keywords" content="${keyword}, ${keyword} news, ${keyword} ${year}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://${domain}/${keyword.replace(/\s+/g, '-')}-${uniqueId}.html">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://${domain}/${keyword.replace(/\s+/g, '-')}-${uniqueId}.html">
     <meta property="og:title" content="${article.title} [${uniqueId}]">
-    <meta property="og:description" content="${article.description.substring(0, 160)}">
+    <meta property="og:description" content="${stripHTML(article.description || article.content || '').substring(0, 160)}">
     <meta property="og:image" content="${imageUrl}">
+    <meta property="og:locale" content="${langConfig.code}">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${article.title} [${uniqueId}]">
-    <meta name="twitter:description" content="${article.description.substring(0, 160)}">
+    <meta name="twitter:description" content="${stripHTML(article.description || article.content || '').substring(0, 160)}">
     <meta name="twitter:image" content="${imageUrl}">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f9ff;
             color: #1a2b3c;
             line-height: 1.7;
@@ -464,34 +485,33 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
         }
         .hero-image {
             width: 100%;
-            max-height: 450px;
+            max-height: 500px;
             object-fit: cover;
-            border-radius: 20px;
+            border-radius: 24px;
             margin-bottom: 35px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
         }
         h1 {
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: #0a1a2f;
-            letter-spacing: -0.015em;
             line-height: 1.3;
         }
-        .meta-badge {
+        .id-badge {
             display: inline-block;
             background: #0a1a2f;
             color: white;
-            padding: 6px 18px;
+            padding: 6px 20px;
             border-radius: 60px;
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 20px;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
         }
         .meta-info {
             display: flex;
-            gap: 28px;
+            gap: 30px;
             color: #4f6f8f;
             margin-bottom: 30px;
             padding-bottom: 25px;
@@ -499,7 +519,7 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
             font-size: 0.95rem;
         }
         .content {
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             color: #2c3e50;
         }
         .content p {
@@ -512,13 +532,6 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
             margin: 40px 0 30px;
             border-left: 5px solid #0a1a2f;
         }
-        .source-link {
-            word-break: break-all;
-            color: #0f5b8c;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .source-link:hover { text-decoration: underline; }
         .ads-container {
             margin: 40px 0;
             padding: 25px;
@@ -535,14 +548,9 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
             font-size: 0.9rem;
             text-align: center;
         }
-        .id-watermark {
-            color: #8a9db0;
-            font-size: 0.8rem;
-            margin-top: 15px;
-        }
         @media (max-width: 768px) {
             .article-card { padding: 25px; }
-            h1 { font-size: 1.7rem; }
+            h1 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -556,34 +564,45 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
             </div>
             
             <!-- ID BADGE -->
-            <span class="meta-badge">🔢 ID: ${uniqueId}</span>
+            <span class="id-badge">🔢 ID: ${uniqueId}</span>
             
             <!-- JUDUL -->
-            <h1>${article.title} [${uniqueId}]</h1>
+            <h1>${article.title}</h1>
             
             <!-- METADATA -->
             <div class="meta-info">
                 <span>📰 ${article.source || 'Google News'}</span>
                 <span>📅 ${dateStr}</span>
-                <span>🌐 ${langName}</span>
+                <span>🌐 ${langConfig.name}</span>
             </div>
             
-            <!-- HERO IMAGE (DARI BERITA) -->
-            <img class="hero-image" src="${imageUrl}" alt="${article.title}" onerror="this.src='${getFallbackImage(keyword)}'">
+            <!-- HERO IMAGE - SESUAI KEYWORD -->
+            <img class="hero-image" src="${imageUrl}" alt="${keyword}" loading="lazy">
             
-            <!-- KONTEN ARTIKEL PARAGRAF LENGKAP -->
+            <!-- KONTEN ARTIKEL - BAHASA ASLI DARI GOOGLE NEWS -->
             <div class="content">
-                ${fullContent}
+                ${contentHTML}
             </div>
             
             <!-- SUMBER ASLI -->
             <div class="source-box">
-                <p style="font-weight: 700; margin-bottom: 15px;">🔗 Sumber asli:</p>
-                <a href="${article.link}" class="source-link" target="_blank" rel="nofollow sponsored">
+                <p style="font-weight: 700; margin-bottom: 15px;">
+                    ${langConfig.code === 'id-ID' ? '🔗 Sumber asli:' : 
+                      langConfig.code === 'ja-JP' ? '🔗 元のソース:' :
+                      langConfig.code === 'ar-SA' ? '🔗 المصدر الأصلي:' :
+                      langConfig.code === 'fr-FR' ? '🔗 Source originale:' :
+                      langConfig.code === 'de-DE' ? '🔗 Originalquelle:' : '🔗 Original source:'}
+                </p>
+                <a href="${article.link}" class="source-link" target="_blank" rel="nofollow sponsored" style="color: #0f5b8c; word-break: break-all; text-decoration: none; font-weight: 600;">
                     ${article.link}
                 </a>
                 <p style="margin-top: 18px; color: #3a5e6e; font-size: 0.95rem;">
-                    ⚠️ Hak cipta sepenuhnya milik sumber asli. Artikel ini adalah ringkasan dan analisis independen.
+                    ${langConfig.code === 'id-ID' ? '⚠️ Hak cipta milik sumber asli. Artikel ini adalah ringkasan.' :
+                      langConfig.code === 'ja-JP' ? '⚠️ 著作権は元のソースに帰属します。この記事は要約です。' :
+                      langConfig.code === 'ar-SA' ? '⚠️ حقوق الطبع والنشر للمصدر الأصلي. هذه المقالة عبارة عن ملخص.' :
+                      langConfig.code === 'fr-FR' ? '⚠️ Les droits d\'auteur appartiennent à la source originale. Cet article est un résumé.' :
+                      langConfig.code === 'de-DE' ? '⚠️ Das Urheberrecht liegt bei der Originalquelle. Dieser Artikel ist eine Zusammenfassung.' :
+                      '⚠️ Copyright belongs to the original source. This article is a summary.'}
                 </p>
             </div>
             
@@ -594,8 +613,8 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
             
             <!-- FOOTER -->
             <div class="footer">
-                <p>© ${year} ${domain} — All rights reserved.</p>
-                <p class="id-watermark">ID: ${uniqueId} · Sumber: Google News</p>
+                <p>© ${year} ${domain}</p>
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #8a9db0;">ID: ${uniqueId} · Sumber: Google News</p>
             </div>
         </div>
     </div>
@@ -606,7 +625,7 @@ _Hasync.push([&apos;Histats.track_hits&apos;, &apos;&apos;]);
 </html>`;
         }
         
-        // GENERATE SITEMAP.XML
+        // GENERATE SITEMAP
         function generateSitemap(articles, domain, keyword) {
             let urls = '';
             articles.forEach(a => {
@@ -623,7 +642,7 @@ ${urls}</urlset>`;
         }
         
         // MAIN GENERATOR
-        async function generatePro() {
+        async function generateNews() {
             const keyword = document.getElementById('keyword').value.trim();
             const domain = document.getElementById('domain').value.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
             const langCode = document.getElementById('language').value;
@@ -636,163 +655,161 @@ ${urls}</urlset>`;
                 return;
             }
             
-            // Reset & show progress
+            // Show progress
             document.getElementById('progressBlock').style.display = 'block';
-            document.getElementById('progressFill').style.width = '5%';
-            document.getElementById('progressPercent').innerHTML = '5%';
-            document.getElementById('progressStatus').innerHTML = '📡 Menghubungi Google News...';
+            document.getElementById('progressFill').style.width = '10%';
+            document.getElementById('progressPercent').innerHTML = '10%';
+            document.getElementById('progressStatus').innerHTML = '📡 Mengambil berita dari Google News...';
             
             try {
-                const lang = LANG[langCode];
+                const lang = LANG_CONFIG[langCode];
+                document.getElementById('previewLanguage').innerHTML = `🌐 ${lang.name}`;
+                
+                // Ambil RSS Google News sesuai bahasa
                 const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(keyword)}&hl=${lang.hl}&gl=${lang.gl}&ceid=${lang.ceid}`;
-                
-                document.getElementById('progressStatus').innerHTML = '📥 Mengambil data RSS...';
-                document.getElementById('progressFill').style.width = '20%';
-                document.getElementById('progressPercent').innerHTML = '20%';
-                
-                const resp = await fetch(RSS2JSON_API + encodeURIComponent(rssUrl));
-                const data = await resp.json();
+                const response = await fetch(RSS2JSON_API + encodeURIComponent(rssUrl));
+                const data = await response.json();
                 
                 if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-                    throw new Error('Tidak ada berita');
+                    throw new Error('Tidak ada berita untuk keyword ini');
                 }
                 
-                document.getElementById('progressStatus').innerHTML = '🖼️ Memproses gambar & artikel...';
-                document.getElementById('progressFill').style.width = '40%';
-                document.getElementById('progressPercent').innerHTML = '40%';
+                document.getElementById('progressStatus').innerHTML = '🖼️ Menyiapkan gambar sesuai keyword...';
+                document.getElementById('progressFill').style.width = '30%';
+                document.getElementById('progressPercent').innerHTML = '30%';
                 
                 const items = data.items.slice(0, jumlah * 2);
                 const zip = new JSZip();
                 const folderName = keyword.replace(/\s+/g, '-').toLowerCase();
                 const folder = zip.folder(folderName);
                 
-                const generatedArticles = [];
+                const articles = [];
                 const fileList = [];
                 
                 for (let i = 0; i < jumlah; i++) {
-                    const randItem = items[Math.floor(Math.random() * items.length)];
+                    const randomItem = items[Math.floor(Math.random() * items.length)];
                     
-                    // Ambil title asli (buang bagian sumber)
-                    let rawTitle = randItem.title || keyword;
-                    if (rawTitle.includes(' - ')) rawTitle = rawTitle.split(' - ')[0].trim();
+                    // Title asli
+                    let title = randomItem.title || keyword;
+                    if (title.includes(' - ')) {
+                        title = title.split(' - ')[0].trim();
+                    }
+                    
+                    // Source
+                    let source = 'Google News';
+                    if (randomItem.title) {
+                        const match = randomItem.title.match(/- (.*?)$/);
+                        if (match) source = match[1].trim();
+                    }
                     
                     // Unique ID
                     const uniqueId = generateID();
                     const fileName = `${folderName}-${uniqueId}.html`;
                     
-                    // Sumber & tanggal
-                    let source = 'Google News';
-                    if (randItem.title) {
-                        const match = randItem.title.match(/- (.*?)$/);
-                        if (match) source = match[1].trim();
-                    }
-                    
-                    // Description
-                    let desc = randItem.description || '';
-                    desc = desc.replace(/<[^>]*>/g, '').substring(0, 220) + '...';
-                    
-                    // --- GAMBAR dari Google News (jika ada) ---
-                    // Hasil pencarian: beberapa scraper komersial punya field image,
-                    // tapi RSS2JSON tidak menyediakan. Kita pakai pendekatan: 
-                    // Jika tidak ada, fallback ke gambar Picsum (tetap kelihatan profesional)
-                    let imageUrl = null;
-                    // Coba deteksi gambar dari konten (sangat jarang)
-                    if (randItem.content && randItem.content.includes('img')) {
-                        const srcMatch = randItem.content.match(/src="([^"]+)"/);
-                        if (srcMatch) imageUrl = srcMatch[1];
-                    }
-                    // Fallback ke placeholder yang relevan
-                    if (!imageUrl) {
-                        imageUrl = getFallbackImage(keyword);
-                    }
-                    
                     const article = {
-                        title: rawTitle,
+                        title: title,
                         uniqueId: uniqueId,
-                        link: randItem.link || '#',
+                        link: randomItem.link || '#',
                         source: source,
-                        description: desc,
-                        image: imageUrl,
-                        pubDate: randItem.pubDate || new Date().toISOString()
+                        description: randomItem.description || '',
+                        content: randomItem.content || randomItem.description || '',
+                        pubDate: randomItem.pubDate || new Date().toISOString()
                     };
                     
-                    // Generate HTML
-                    const html = generateFullHTML(
-                        article, domain, keyword, lang.name, 
+                    // Generate HTML dengan bahasa yang dipilih
+                    const html = generateHTML(
+                        article, domain, keyword, lang,
                         adsScript, histatsScript
                     );
                     
                     folder.file(fileName, html);
-                    
-                    generatedArticles.push(article);
-                    fileList.push({ name: fileName, id: uniqueId, img: imageUrl });
+                    articles.push(article);
+                    fileList.push({ name: fileName, id: uniqueId });
                     
                     // Update progress
-                    const prog = 40 + ((i + 1) / jumlah * 50);
-                    document.getElementById('progressFill').style.width = prog + '%';
-                    document.getElementById('progressPercent').innerHTML = Math.round(prog) + '%';
-                    document.getElementById('progressStatus').innerHTML = `📝 Membuat artikel ${i+1}/${jumlah}...`;
+                    const progress = 30 + ((i + 1) / jumlah * 60);
+                    document.getElementById('progressFill').style.width = progress + '%';
+                    document.getElementById('progressPercent').innerHTML = Math.round(progress) + '%';
+                    document.getElementById('progressStatus').innerHTML = `📝 Membuat artikel ${i+1}/${jumlah} (${lang.name})...`;
                     
-                    await new Promise(r => setTimeout(r, 30));
+                    await new Promise(r => setTimeout(r, 20));
                 }
                 
                 // SITEMAP
-                const sitemap = generateSitemap(generatedArticles, domain, keyword);
+                const sitemap = generateSitemap(articles, domain, keyword);
                 folder.file('sitemap.xml', sitemap);
                 
-                // Update file list di UI
-                const fileListEl = document.getElementById('fileListContainer');
+                // Update file list
                 let flHtml = '';
-                fileList.slice(0, 7).forEach(f => {
+                fileList.slice(0, 8).forEach(f => {
                     flHtml += `<div class="file-item">
                         <span style="color: #0a1a2f;">📄</span>
-                        <span style="font-family: monospace; flex:1;">${f.name}</span>
-                        <span style="color: #1e824c; font-size:0.8rem;">🖼️+</span>
+                        <span style="font-family: monospace; flex: 1;">${f.name}</span>
+                        <span style="color: #1e824c; font-size: 0.75rem; background: #e8f5e9; padding: 4px 10px; border-radius: 30px;">${f.id}</span>
                     </div>`;
                 });
-                if (fileList.length > 7) {
-                    flHtml += `<div class="file-item" style="color: #4f6f8f;">... dan ${fileList.length-7} file lainnya</div>`;
+                if (fileList.length > 8) {
+                    flHtml += `<div class="file-item" style="color: #4f6f8f;">... dan ${fileList.length - 8} file lainnya</div>`;
                 }
-                flHtml += `<div class="file-item" style="background: #e8f0fe;">
+                flHtml += `<div class="file-item" style="background: #e3f2fd;">
                     <span style="color: #0f5b8c;">🗺️</span>
-                    <span style="font-family: monospace; flex:1;">sitemap.xml</span>
-                    <span style="color: #0f5b8c;">${generatedArticles.length} URLs</span>
+                    <span style="font-family: monospace; flex: 1;">sitemap.xml</span>
+                    <span style="color: #0f5b8c; font-size: 0.75rem;">${articles.length} URLs</span>
                 </div>`;
-                fileListEl.innerHTML = flHtml;
+                
+                document.getElementById('fileListContainer').innerHTML = flHtml;
                 document.getElementById('fileCounter').innerHTML = (fileList.length + 1) + ' file';
                 
-                // PREVIEW ARTIKEL PERTAMA (dengan gambar)
-                if (generatedArticles.length > 0) {
-                    const first = generatedArticles[0];
+                // PREVIEW ARTIKEL PERTAMA
+                if (articles.length > 0) {
+                    const first = articles[0];
+                    const previewDate = new Date(first.pubDate).toLocaleDateString(lang.code, {
+                        day: 'numeric', month: 'long', year: 'numeric'
+                    });
+                    
+                    let previewDesc = '';
+                    if (first.content) {
+                        previewDesc = stripHTML(first.content).substring(0, 180) + '...';
+                    } else if (first.description) {
+                        previewDesc = stripHTML(first.description).substring(0, 180) + '...';
+                    }
+                    
                     const previewHtml = `
                         <div style="display: flex; gap: 25px; flex-wrap: wrap;">
                             <div style="flex: 0 0 200px;">
-                                <img src="${first.image}" style="width:100%; height:140px; object-fit:cover; border-radius:16px; border:1px solid #d0e0f0;" onerror="this.src='${getFallbackImage(keyword)}'">
-                                <p style="font-size:0.7rem; color:#4f6f8f; margin-top:8px; text-align:center;">🖼️ Gambar dari berita</p>
+                                <img src="${getImageUrl(keyword)}" style="width: 100%; height: 140px; object-fit: cover; border-radius: 16px; border: 1px solid #d0e0f0;">
+                                <p style="font-size: 0.7rem; color: #4f6f8f; margin-top: 8px; text-align: center;">🖼️ Unsplash · ${keyword}</p>
                             </div>
-                            <div style="flex:1;">
-                                <div style="background: #0a1a2f; color:white; display:inline-block; padding:4px 16px; border-radius:60px; font-size:0.7rem; margin-bottom:12px;">🔢 ID: ${first.uniqueId}</div>
-                                <h3 style="font-size:1.2rem; margin-bottom:8px;">${first.title} [${first.uniqueId}]</h3>
-                                <p style="color:#2c5a7a; margin-bottom:12px;">📰 ${first.source} · ${new Date().toLocaleDateString('id-ID')}</p>
-                                <p style="color:#2c3e50; font-size:0.95rem;">${first.description.substring(0,120)}...</p>
-                                <p style="margin-top:12px; color: #1e824c;">✅ Paragraf artikel sudah include (5 paragraf unik)</p>
+                            <div style="flex: 1;">
+                                <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;">
+                                    <span style="background: #0a1a2f; color: white; padding: 4px 16px; border-radius: 60px; font-size: 0.7rem;">🔢 ID: ${first.uniqueId}</span>
+                                    <span style="background: #f5b042; padding: 4px 16px; border-radius: 60px; font-size: 0.7rem; font-weight: bold;">🌐 ${lang.name}</span>
+                                </div>
+                                <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #0a1a2f;">${first.title}</h3>
+                                <p style="color: #2c5a7a; margin-bottom: 12px; font-size: 0.9rem;">📰 ${first.source} · ${previewDate}</p>
+                                <p style="color: #2c3e50; font-size: 0.95rem; background: white; padding: 15px; border-radius: 12px; border: 1px solid #e0e8f0;">
+                                    ${previewDesc || 'Konten berita asli sesuai bahasa pilihan...'}
+                                </p>
+                                <p style="margin-top: 12px; color: #1e824c; font-size: 0.85rem;">
+                                    ✅ Konten asli dari Google News (${lang.name}) · Gambar dari Unsplash
+                                </p>
                             </div>
                         </div>
                     `;
                     document.getElementById('articlePreviewArea').innerHTML = previewHtml;
                 }
                 
-                // SELESAI - DOWNLOAD ZIP
+                // COMPLETE - DOWNLOAD ZIP
                 document.getElementById('progressStatus').innerHTML = '✅ Selesai! Mendownload ZIP...';
                 document.getElementById('progressFill').style.width = '100%';
                 document.getElementById('progressPercent').innerHTML = '100%';
                 
                 const zipBlob = await zip.generateAsync({ type: 'blob' });
-                saveAs(zipBlob, `${folderName}-${jumlah}artikel-${Date.now()}.zip`);
+                saveAs(zipBlob, `${folderName}-${jumlah}artikel-${langCode}-${Date.now()}.zip`);
                 
-            } catch (err) {
-                console.error(err);
-                alert('❌ Error: ' + err.message);
+            } catch (error) {
+                console.error(error);
+                alert('❌ Error: ' + error.message);
                 document.getElementById('progressBlock').style.display = 'none';
             }
         }
